@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6300 64-bit) (preloaded format=pdflatex 2017.5.5)  4 DEC 2017 21:54
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6300 64-bit) (preloaded format=pdflatex 2017.5.5)  4 DEC 2017 21:59
 entering extended mode
 **./index_exp.tex
 (index_exp.tex
@@ -56,10 +56,10 @@ Overfull \hbox (83.72313pt too wide) in paragraph at lines 98--105
 
 ) (environments.tex) [2] (index_exp.aux) ) 
 Here is how much of TeX's memory you used:
- 225 strings out of 493328
- 2410 string characters out of 3139131
+ 226 strings out of 493328
+ 2419 string characters out of 3139131
  60405 words of memory out of 3000000
- 3834 multiletter control sequences out of 15000+200000
+ 3835 multiletter control sequences out of 15000+200000
  5326 words of font info for 20 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  23i,7n,18p,146b,196s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -68,7 +68,7 @@ pe1/public/amsfonts/cm/cmbx10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/publ
 ic/amsfonts/cm/cmbx12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfo
 nts/cm/cmr10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cm
 tt10.pfb>
-Output written on index_exp.pdf (2 pages, 75594 bytes).
+Output written on index_exp.pdf (2 pages, 75611 bytes).
 PDF statistics:
  25 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
