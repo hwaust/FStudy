@@ -1,21 +1,22 @@
 \subsection{E2017120401: Base Performance Evaluation}
  
 \subsubsection{Purpose}
+To understand the baseline performance by using
+the queries in ADBIS submission for XMark600.
  
 \subsubsection{Settings} 
-Hardware: HaoDesk (see \ref{HaoDesk})\\
-Software: BaseX 6.8.7, Java 1.8.0\_151.
 
-\textbf{XML Dataset}
+\begin{itemize}
 
-An XMark dataset xmark600.xml sized 66.9 GB. A BaseX databases 'xmark600' is
-created by the server using command:
-
+\item \textbf{Hardware} HaoDesk (see \ref{HaoDesk})\\
+\item \textbf{Software} BaseX 6.8.7, Java 1.8.0\_151.\\
+\item \textbf{XML Dataset} XMark600.xml (see \ref{table:xmark}) sized 66.9 GB and
+a BaseX databases `xmark600' is created by the server using command:\\
 \verb|create db xmark600 xmark600.xml|
+\item \textbf{Queries} xm1.org -- xm6.org (see ).
 
-\textbf{Queries} 
+\end{itemize}
 
-xm1 -- xm6 used in ADBIS submission attached at the bottom.
 
 \subsubsection{Experiment Design}  
 
@@ -36,7 +37,7 @@ processed in APP is first rewritten into the following XQuery expression:
 The results are stored either in memory or on disk depending on APP's settings:
 a) memory means the results are stored in memory and then discarded after the
 experiments. b) disk means the results are stored in disk and will be preserved
-after the experiments.
+after the experiments. One more thing, the maximum memory for APP was set to 12 GB.
 
 
 \subsubsection{Experiment Results}
@@ -48,6 +49,16 @@ execution time. Each query is evaluated 5 times.
 \textbf{Process Results}
 We removed the results of the  first run and take the average of the rest as
 the final execution time listed in Table~\ref{table:E2017120401_1}. 
+
+ 
+71.25 
+73.34 
+113.05 
+113.84 
+83.59 
+88.75 
+78.42 
+78.90 
 
 
 \begin{table}[t]
@@ -62,19 +73,19 @@ the final execution time listed in Table~\ref{table:E2017120401_1}.
          & memory  &    N/A   &  \\
  \hline
  xm2.org &  disk   &    0.01  &              0 \\
-         & memory  &    0.00  &  \\
+         & memory  &    0.01  &  \\
   \hline
- xm3.org &  disk   &  105.11  &    922,270,281 \\
-         & memory  &  107.21  &  \\
+ xm3.org &  disk   &  71.25  &    922,270,281 \\
+         & memory  &  73.34  &  \\
   \hline
- xm4.org &  disk   &  126.00  &  1,583,959,305 \\
-         & memory  &  112.32  &  \\
+ xm4.org &  disk   &  113.05  &  1,583,959,305 \\
+         & memory  &  113.84  &  \\
   \hline
- xm5.org &  disk   &  112.94  &    989,346,990 \\
-         & memory  &  106.88  &   \\
+ xm5.org &  disk   &  83.59  &    989,346,990 \\
+         & memory  &  88.75   &   \\
   \hline
- xm6.org &  disk   &   78.08  &  1,351,708,787 \\
-         & memory  &   76.21  &   \\
+ xm6.org &  disk   &  78.42   &  1,351,708,787 \\
+         & memory  &  78.90   &   \\
  \hline \hline
 	\end{tabular}
 \end{table}
@@ -84,23 +95,31 @@ Note: The result of xm2.org is always empty (still under investigation).
 
 
 \subsubsection{Observations}
-\textbf{Storage has small influence on execution time}
 
-I noticed one thing that the execution time is pretty similar for
-xm3.org and xm5.org. This is because the bottleneck is on the worker's
-side but not on the master's side. For example, for xm3.org,
-it takes 105s to receive about 880MB data, i.e. around 8MB/s, which
-is much slower than the speed of both memory and disk. Thus,
-the performance are much similar.
+\begin{itemize}
+\item \textbf{Storage has small influence on execution time}
+ 
+ We noticed one thing that the execution time is pretty similar for
+ all the available queries. This is because the bottleneck is on the
+ worker's side but not on the master's side. For example, for xm4.org,
+ it takes 113s to receive about 1500 MB data, i.e. around 13.36 MB/s, 
+ which is much slower than the maximum speed of both memory and disk. 
+ Thus, the performance are much similar. We also notice that for some
+ queries such as xm3.org and xm5.org, in-memory case is even a bit 
+ slower than on-disk case, one possible explanation is that the time 
+ was taken by calling System.gc(), since it researched the maxsimum 
+ available memory.
+ 
+\item \textbf{The execution time is steady}
+ 
+ Compared with the ADBIS study, the execution time is much more
+ steady. My explanation to this result is that due to the large scale
+ of data, the fluctuation has a weaker influence on the execution
+ time (milliseconds -> seconds). For you reference, the results and
+ summary are saved in matsu-lab99:/home2/hao/fragmentation/20171202)
+ By the way, since the results are still not fully correct, I will
+ commit my code later after solve them.
+\end{itemize}
 
-\textbf{The execution time is steady}
-
-Compared with the ADBIS study, the execution time is much more
-steady. My explanation to this result is that due to the large scale
-of data, the fluctuation has a weaker influence on the execution
-time (milliseconds -> seconds). For you reference, the results and
-summary are saved in matsu-lab99:/home2/hao/fragmentation/20171202)
-By the way, since the results are still not fully correct, I will
-commit my code later after solve them.
 
  
