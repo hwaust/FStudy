@@ -1,0 +1,32 @@
+
+\subsection{E2017120501: Why xm2.org on XMark600 returns nothing?}
+
+ 
+To find the reason, I used count() function tested the following 
+queries, Q1--Q5 (Q1 is the original) over XMark600 using HaoLab.\\ 
+\verb|Q1:/site//incategory[./@category="category52"]/parent::item/@id|\\
+\verb|Q2:/site//incategory[./@category="category52"]|\\
+\verb|Q3:/site//incategory[@category]|\\
+\verb|Q4:/site//incategory[contains(@category, "52")]|\\
+\verb|Q5:/site//incategory[contains(@category, "category52")]|\\
+
+The results are listed as below:
+
+ 
+count(Q1) = count(Q2) = 0, count(Q3) = 49,514,754, count(Q4) =  2,720,824 and count(Q5) = 895,154. 
+
+I then outputted the results of Q4 and Q5. After checking the 
+results, I did not found any node match "category52".
+Note: for Q5, what I found were nodes with contents started with 
+\texttt{category52} such as 
+
+\verb|<incategory category="category526763"/>|. 
+
+Therefore, the reason is simply that no "incategory" node has 
+an attribute with content of "category52". To make sure this 
+conclusion, I also ran the queries on both my desktop PC in the 
+lab and the compute at my home. The results are the same.
+
+Therefore, the results of xm2.org E2017120401 in report are correct.
+
+
