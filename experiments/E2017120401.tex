@@ -2,56 +2,52 @@
  
 \subsubsection{Purpose}
 To understand the baseline performance by using
-the queries in ADBIS submission for XMark600.
- 
-\subsubsection{Settings} 
-
-\begin{itemize}
-
-\item \textbf{Hardware} HaoDesk (see \ref{HaoDesk})\\
-\item \textbf{Software} BaseX 6.8.7, Java 1.8.0\_151(x64).\\
-\item \textbf{XML Dataset} XMark600.xml (see Table~\ref{table:xmark}), 
-from which a BaseX databases `xmark600' is created in a BaseX server using command:\\
-\verb|create db xmark600 xmark600.xml|
-\item \textbf{Queries} xm1.org -- xm6.org (see ).
-
-\end{itemize}
-
+the queries in ADBIS submission for XMark600. 
 
 \subsubsection{Experiment Design}  
 
-A BaseX instance Server first runs in server mode started by the following
-command on HaoDesk.
+We run a BaseX server $Server$ for processing XPath queries on specified 
+databases. Server starts by the following command on HaoDesk.
 
 \verb| java -Xmx4g -xms2g -cp BaseX897.jar org.basex.BaseXServer|
 
 Note the databases in Server are NOT in main memory mode.
 
-Then, a java program APP runs on HaoDesk in charge of sending an input query to
-Server via local network and saving results returned from Server to memory(short
-for mem) or disk depending on settings. An input query Query that will be
-processed in APP is first rewritten into the following XQuery expression:
+We run a java program $Japp$ on HaoDesk in charge of sending an input query to
+Server via local network and saving results returned from Server. An input query Query that will be
+processed in Japp is first rewritten into the following XQuery expression:
 
 \verb|for $node in db:open('xmark600')Query return $node|
 
-The results are stored either in memory or on disk depending on APP's settings:
-a) memory means the results are stored in memory and then discarded after the
-experiments. b) disk means the results are stored in disk and will be preserved
-after the experiments. One more thing, the maximum memory for APP was set to 12 GB.
+The results of the input query are stored either in memory or on disk depending on Japp's settings. When in memory, the results will be then discarded after the
+experiments, while on disk, the results will be preserved in files. One more thing, the maximum available memory for Japp was set to 12 GB.
+
+\subsubsection{Settings} 
+
+\begin{itemize}
+	
+	\item \textbf{Hardware} HaoDesk (see \ref{HaoDesk})\\
+	\item \textbf{Software} BaseX 6.8.7, Java 1.8.0\_151(x64).\\
+	\item \textbf{XML Dataset} XMark600.xml (see Table~\ref{table:xmark}), 
+	from which a BaseX databases `xmark600' is created in a BaseX server using command:\\
+	\verb|create db xmark600 xmark600.xml|
+	\item \textbf{Queries} xm1.org -- xm6.org (see ).
+	
+\end{itemize}
 
 
 \subsubsection{Experiment Results}
 
-\textbf{Timing} The execution time is measured in APP. The time period between
+\textbf{Timing} The execution time is measured in Japp. The time period between
 starting sending a query and finishing receiving the results is measured as
 execution time. Each query is evaluated 5 times. 
 
 \textbf{Process Results}
-We removed the results of the first run and take the average of the rest as
+We disgard the execution time of the first run and take the average of the rest as
 the final execution time listed in Table~\ref{table:E2017120401_1}.
 
 
-\textbf{Original Data}
+\textbf{Original Experiment Data}
 
 All the original results containing execution time of queries and scripts used 
 in the experiments  are stored to \texttt{experiments/E2017120401} relative to
@@ -112,9 +108,9 @@ was taken by calling System.gc().
 \item \textbf{The execution time is steady}
 
 Compared with the ADBIS study, the execution time of each run is more
-steady. My explanation to this result is that for very large scale
+steady. Our explanation to this result is that for very large scale
 of data, the fluctuation has a weaker influence on the execution
-time, which increased from milliseconds to seconds. 
+time (increased from milliseconds to seconds). 
 
 
 \end{itemize}

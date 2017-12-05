@@ -1,0 +1,35 @@
+\section{XPath Queries}
+
+\subsection{For XMark Dataset}
+
+The queries for XMark datasets are listed in Table~\ref{table:xmarkqueries}.
+
+\begin{table}[t]
+		\caption{Original XPath queries For XMark datasets. }
+	\label{table:xmarkqueries}
+	\centering
+	\begin{tabular}{c|l}
+	\hline\hline
+	 key      &  query\\
+	 \hline\hline
+	  xm1.org &  \verb|/site//*[name(.)="emailaddress" or| \\
+	          & \verb|name(.)="annotation" or name(.)="description"]| \\
+	  \hline
+	  xm2.org & /site//incategory[./@category="category52"]/parent::item/@id \\
+	  \hline
+	  xm3.org & /site//open\_auction/bidder[last()] \\
+	  \hline
+	  xm4.org & /site/regions/*/item[./location="United States" and ./quantity $>$ \\
+	          &  and ./payment="Creditcard" and ./description and ./name] \\
+	  \hline
+	  xm5.org & /site/open\_auctions/open\_auction/bidder/increase\\
+	  \hline
+	  xm6.org & /site/regions/*[name(.)="africa" or \\   
+	          & name(.)="asia"]/item/description/parlist/listitem\\
+ 	 \hline\hline   
+	\end{tabular}
+\end{table}
+
+ 
+
+ 
