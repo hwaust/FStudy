@@ -1,7 +1,7 @@
 
-\subsection{E2017120501: Why xm2.org on XMark600 returns nothing?}
+\section{E2017120501: Why xm2.org on XMark600 returns nothing?}
 
-\paragraph{Check With BaseX}
+\subsection{Check With BaseX}
 To find the reason, I used count() function tested the following 
 queries, Q1--Q5 (Q1 is the original) over XMark600 using HaoLab.\\ 
 \verb|Q1:/site//incategory[./@category="category52"]/parent::item/@id|\\
@@ -29,7 +29,7 @@ started with  \texttt{category52} such as
 
 \verb|<incategory category="category526763"/>|. 
 
-\paragraph{Check Without BaseX}
+\subsection{Check Without BaseX}
 From the above results, it is clear that no "incategory" node has 
 an attribute with content of "category52". To make sure this 
 conclusion, we did another test without using BaseX.
@@ -62,7 +62,7 @@ Then, what we found are listed as below.\\
 \verb|Found in line 424449141: <interest category="category52"/>|\\
 \verb|...|\\
 \verb|Found in line 658701472: <interest category="category52"/>|\\
-(See the full results are stored in the file ``\texttt{experiments/E2017120501/results.txt}"). 
+(The full results are stored in the file ``\texttt{experiments/E2017120501/results.txt}"). 
 
 There is no \texttt{incategory} node in xmark600 found with attribute category="category52". 
 
