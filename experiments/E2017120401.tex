@@ -13,9 +13,11 @@ databases. Server starts by the following command on HaoDesk.
 
 Note the databases in Server are NOT in main memory mode.
 
-We run a java program $Japp$ on HaoDesk in charge of sending an input query to
-Server via local network and saving results returned from Server. An input query Query that will be
-processed in Japp is first rewritten into the following XQuery expression:
+We run a java program $Japp$ (that is the class \texttt{QueryEvaluator} 
+in repository/src/fragmentation/java/fragmentation/exe)
+on HaoDesk in charge of sending an input query to
+Server via local network and saving results returned from Server. An input query 
+Query that will be processed in Japp is first rewritten into the following XQuery expression:
 
 \verb|for $node in db:open('xmark600')Query return $node|
 
