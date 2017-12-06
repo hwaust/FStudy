@@ -1,0 +1,101 @@
+
+
+D:\data>E2017120401.bat 3 mem
+java -Xmx16g -Xms10g -cp bxstudy.jar basex.ORIG  -db xmark600 -run 5 -query xm3.
+org -f H:\data\results -st mem
+Processing: database=xmark600, querykey=xm3.org, storage=memory
+Used memory: 102 MB -> 1 MB of 9813 MB. Time cost: 10 ms.
+Used memory: 3713 MB -> 1 MB of 9813 MB. Time cost: 57 ms.
+Used memory: 3663 MB -> 1 MB of 9813 MB. Time cost: 20 ms.
+Used memory: 3663 MB -> 1 MB of 9813 MB. Time cost: 20 ms.
+Used memory: 3663 MB -> 1 MB of 9813 MB. Time cost: 20 ms.
+
+Log data saved to H:\data\results\xmark600_xm3.org_mem_20171206_220209.txt
+D:\data>E2017120401.bat 4 mem
+java -Xmx16g -Xms10g -cp bxstudy.jar basex.ORIG  -db xmark600 -run 5 -query xm4.
+org -f H:\data\results -st mem
+Processing: database=xmark600, querykey=xm4.org, storage=memory
+Used memory: 102 MB -> 1 MB of 9813 MB. Time cost: 9 ms.
+Used memory: 8699 MB -> 1 MB of 9813 MB. Time cost: 128 ms.
+Used memory: 8648 MB -> 1 MB of 9813 MB. Time cost: 50 ms.
+Used memory: 8648 MB -> 1 MB of 9813 MB. Time cost: 32 ms.
+Used memory: 8648 MB -> 1 MB of 9813 MB. Time cost: 32 ms.
+
+Log data saved to H:\data\results\xmark600_xm4.org_mem_20171206_221155.txt
+D:\data>E2017120401.bat 5 mem
+java -Xmx16g -Xms10g -cp bxstudy.jar basex.ORIG  -db xmark600 -run 5 -query xm5.
+org -f H:\data\results -st mem
+Processing: database=xmark600, querykey=xm5.org, storage=memory
+Used memory: 102 MB -> 1 MB of 9813 MB. Time cost: 11 ms.
+Used memory: 3905 MB -> 1 MB of 9813 MB. Time cost: 40 ms.
+Used memory: 3855 MB -> 1 MB of 9813 MB. Time cost: 20 ms.
+Used memory: 3855 MB -> 1 MB of 9813 MB. Time cost: 21 ms.
+Used memory: 3855 MB -> 1 MB of 9813 MB. Time cost: 22 ms.
+
+Log data saved to H:\data\results\xmark600_xm5.org_mem_20171206_223430.txt
+D:\data>E2017120401.bat 6 mem
+java -Xmx16g -Xms10g -cp bxstudy.jar basex.ORIG  -db xmark600 -run 5 -query xm6.
+org -f H:\data\results -st mem
+Processing: database=xmark600, querykey=xm6.org, storage=memory
+Used memory: 102 MB -> 1 MB of 9813 MB. Time cost: 9 ms.
+Used memory: 8034 MB -> 1 MB of 9813 MB. Time cost: 113 ms.
+Used memory: 7983 MB -> 1 MB of 9813 MB. Time cost: 35 ms.
+Used memory: 7983 MB -> 1 MB of 9813 MB. Time cost: 34 ms.
+Used memory: 7983 MB -> 1 MB of 9813 MB. Time cost: 34 ms.
+
+Log data saved to H:\data\results\xmark600_xm6.org_mem_20171206_224452.txt
+D:\data>E2017120601.bat
+java -Xmx16g -Xms10g -cp bxstudy.jar basex.ORIG  -db xmark600 -run 5 -query xm3.
+org -f H:\data\results -st disk
+Processing: database=xmark600, querykey=xm3.org, storage=disk
+Used memory: 102 MB -> 1 MB of 9813 MB. Time cost: 10 ms.
+Used memory: 103 MB -> 1 MB of 9813 MB. Time cost: 8 ms.
+Used memory: 52 MB -> 1 MB of 9813 MB. Time cost: 7 ms.
+Used memory: 52 MB -> 1 MB of 9813 MB. Time cost: 6 ms.
+Used memory: 52 MB -> 1 MB of 9813 MB. Time cost: 6 ms.
+
+Log data saved to H:\data\results\xmark600_xm3.org_disk_20171206_225633.txt
+D:\data>E2017120401.bat 4 disk
+java -Xmx16g -Xms10g -cp bxstudy.jar basex.ORIG  -db xmark600 -run 5 -query xm4.
+org -f H:\data\results -st disk
+Processing: database=xmark600, querykey=xm4.org, storage=disk
+Used memory: 102 MB -> 1 MB of 9813 MB. Time cost: 20 ms.
+Used memory: 103 MB -> 1 MB of 9813 MB. Time cost: 9 ms.
+Used memory: 52 MB -> 1 MB of 9813 MB. Time cost: 6 ms.
+Used memory: 52 MB -> 1 MB of 9813 MB. Time cost: 6 ms.
+Used memory: 52 MB -> 1 MB of 9813 MB. Time cost: 6 ms.
+
+Log data saved to H:\data\results\xmark600_xm4.org_disk_20171206_230203.txt
+D:\data>E2017120401.bat 5 disk
+java -Xmx16g -Xms10g -cp bxstudy.jar basex.ORIG  -db xmark600 -run 5 -query xm5.
+org -f H:\data\results -st disk
+Processing: database=xmark600, querykey=xm5.org, storage=disk
+Used memory: 102 MB -> 1 MB of 9813 MB. Time cost: 9 ms.
+Used memory: 103 MB -> 1 MB of 9813 MB. Time cost: 10 ms.
+Used memory: 52 MB -> 1 MB of 9813 MB. Time cost: 7 ms.
+Used memory: 52 MB -> 1 MB of 9813 MB. Time cost: 6 ms.
+Used memory: 52 MB -> 1 MB of 9813 MB. Time cost: 6 ms.
+
+Log data saved to H:\data\results\xmark600_xm5.org_disk_20171206_231502.txt
+D:\data>E2017120401.bat 6 disk
+java -Xmx16g -Xms10g -cp bxstudy.jar basex.ORIG  -db xmark600 -run 5 -query xm6.
+org -f H:\data\results -st disk
+Processing: database=xmark600, querykey=xm6.org, storage=disk
+Used memory: 102 MB -> 1 MB of 9813 MB. Time cost: 11 ms.
+Used memory: 103 MB -> 1 MB of 9813 MB. Time cost: 10 ms.
+Used memory: 52 MB -> 1 MB of 9813 MB. Time cost: 9 ms.
+Used memory: 52 MB -> 1 MB of 9813 MB. Time cost: 6 ms.
+Used memory: 52 MB -> 1 MB of 9813 MB. Time cost: 6 ms.
+
+D:\data>E2017120401.bat 1 disk
+java -Xmx16g -Xms10g -cp bxstudy.jar basex.ORIG  -db xmark600 -run 5 -query xm1.
+org -f H:\data\results -st disk
+Processing: database=xmark600, querykey=xm1.org, storage=disk
+Used memory: 102 MB -> 1 MB of 9813 MB. Time cost: 9 ms.
+Used memory: 103 MB -> 1 MB of 9813 MB. Time cost: 10 ms.
+Used memory: 52 MB -> 1 MB of 9813 MB. Time cost: 7 ms.
+Used memory: 52 MB -> 1 MB of 9813 MB. Time cost: 0 ms.
+Used memory: 52 MB -> 1 MB of 9813 MB. Time cost: 15 ms.
+
+Log data saved to H:\data\results\xmark600_xm1.org_disk_20171207_001210.txt
+D:\data>E2017120401.bat 1 disk
