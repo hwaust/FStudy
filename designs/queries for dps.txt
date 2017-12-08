@@ -1,45 +1,67 @@
 Dear Matsuzaki-sensei,
 
 # I reinstalled Thunderbird and reset the settings. If there is
-# anything wrong, please let me know.
+# anything wrong in plain text, please let me know.
 
 > x) Write down all the queries in XQuery concretely for the XPath
 > queries in ADBIS submission (for XMark dataset).
-I write the six pairs of queries as follows:
+
+The implementation of data partitioning I will use is server-side one.
+The two XQpath queries are lised as follows:
+---------------------- XQ1: for prefix query  ----------------------
+let $tmp := db:open('{tmpdb}') return
+let $d := array { db:open('{db}'){prefix} ! db:node-pre(.) } return 
+let $P := {P} return for $i in 0 to $P - 1 return 
+let $q := array:size($d) idiv $P return 
+let $r := array:size($d) mod $P return 
+let $part_length := if ($i < $r) then $q + 1 
+                    else $q return  
+let $part_begin  := if ($i <= $r) then ($q + 1)*$i 
+                    else $q*$i + $r return  
+insert node element part {
+   array:subarray($d, $part_begin + 1, $part_length) 
+} as last into $tmp/root";
+------------------------------------------------------------------ 
+---------------------- XQ2: for suffix query XQ2 -----------------
+let $i := {p} return let $part_pre := $i*2 + 1 return 
+for $x in ft:tokenize(db:open-pre('{tmpdb}', $part_pre)) return 
+let $node := db:open-pre('{db}', xs:integer($x)){suffix} 
+return (('', db:node-pre($node)), $node)";
+------------------------------------------------------------------ 
+where 
+- {db} is the name of database.
+- {tmpdb} is the temparory database for holding results of 
+  prefix query.
+- {prefix} is the prefix query.
+- {suffix} is the suffix query.
+- {P} is the number of partitions.
+- {p} is the p-th partition.
+
+
+XQ1 is the same as that of ADBIS study, while the XQ2 changes only 
+the last "return" statement to add line breaks.
+
+The six XPath queries will be used are also attached below.
 
 xm1.dps: /site/*
 xm1.dps: descendant-or-self::*[...]
-Reason:
-Since /site//* is inevitable, this is the only way I can design.
 
 xm2c.dps: db:attribute("{db}", "category52")
 xm2c.dps: parent::*.../@*:id
-Reason:
-xm2c.dps was the fastest. Since this can be processed in the
-distributed framework, I thus pick this one.
 
 xm3c.dps: /site/open_auctions/open_auction
 xm3c.dps: bidder[last()]
-Reason: With the added "open_auctions" by BaseX itself, it can
-also be processed by the new framework. It is also the fastest
-because a path will only child axis can be accelerated by using
-path index.
 
 xm4c.dps: db:text("{db}", "Creditcard")/parent::payment
 xm4c.dps: parent::item...[...]
-Reason: The location steps till item can be efficient processed
-by path index. The suffix query can be evaluated inside fragments.
 
 xm5b.dps: /site/open_auctions/open_auction
 xm5b.dps: bidder/increase
-Reason: open_auctions is on the pruned trees but open_auction is not.
-Based on the previous resutls, xm5b.dps is faster. I follow xm5b.dps.
 
 xm6c.dps: /site/regions/*[...]/item
 xm6c.dps: description/parlist/listitem
-Reason: This design tries to retrieve the results of item,
-which is in the pruned tree. Plus, the number of items are many
-thus worthy to be partitioned.
+
+
 
 Sincerely,
 Wei.
