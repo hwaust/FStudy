@@ -1,32 +1,61 @@
+Dear Matsuzaki-sensei,
 
+# I reinstalled Thunderbird and reset the settings. If there is
+# anything wrong, please let me know.
+
+> x) Write down all the queries in XQuery concretely for the XPath
+> queries in ADBIS submission (for XMark dataset).
+I write the six pairs of queries as follows:
 
 xm1.dps: /site/*
 xm1.dps: descendant-or-self::*[...]
-Reason: Since /site//* is inevitable, this is the only way I can design.  
+Reason:
+Since /site//* is inevitable, this is the only way I can design.
 
-xm2.dps: /site//incategory
-xm2.dps: self::*[./@category="category52"]/parent::item/@id
-Reason:  //incategory can be optimized by adding the missing steps by Basex itself.
-Thus, it is efficient. Also, incategory falls inside fragments.
+xm2c.dps: db:attribute("{db}", "category52")
+xm2c.dps: parent::*.../@*:id
+Reason:
+xm2c.dps was the fastest. Since this can be processed in the
+distributed framework, I thus pick this one.
 
- 
-xm3.dps: /site//open_auction
-xm3.dps: bidder[last()]
-Reason: the same as that of xm2.dps. 
-  
-xm4.dps: /site/regions/*/item
-xm4.dps: self::*[...]
-Reason: The location steps till item can be fficient processed by path index. 
-The suffix query can be evaluated inside fragments.
+xm3c.dps: /site/open_auctions/open_auction
+xm3c.dps: bidder[last()]
+Reason: With the added "open_auctions" by BaseX itself, it can
+also be processed by the new framework. It is also the fastest
+because a path will only child axis can be accelerated by using
+path index.
 
-xm5.dps: /site/open_auctions/open_auction
-xm5.dps: bidder/increase
-open_auctions are node that on pruned trees but open_auction is not. 
-Based on the previous resutls, xm5b.dps is faster. I follow xm5b.dps
-xm5a.dps: /site/open_auctions/open_auction/bidder + increase
-xm5b.dps: /site/open_auctions/open_auction + bidder/increase
+xm4c.dps: db:text("{db}", "Creditcard")/parent::payment
+xm4c.dps: parent::item...[...]
+Reason: The location steps till item can be efficient processed
+by path index. The suffix query can be evaluated inside fragments.
 
-xm6.dps: /site/regions/*[...]/item
-xm6.dps: description/parlist/listitem
-Reason: This design tries to use path index to evaluate location steps
-till item, including the predicate. 
+xm5b.dps: /site/open_auctions/open_auction
+xm5b.dps: bidder/increase
+Reason: open_auctions is on the pruned trees but open_auction is not.
+Based on the previous resutls, xm5b.dps is faster. I follow xm5b.dps.
+
+xm6c.dps: /site/regions/*[...]/item
+xm6c.dps: description/parlist/listitem
+Reason: This design tries to retrieve the results of item,
+which is in the pruned tree. Plus, the number of items are many
+thus worthy to be partitioned.
+
+Sincerely,
+Wei.
+
+On 08/12/2017 9:10 AM, Kiminori Matsuzaki wrote:
+> Dear Hao-kun,
+>
+> You told me on Dec. 3rd:
+>
+>>> For x), don't you do "data partitioning"?
+>>> The queries for data partitioning are what I wanted to know.
+>> No, not yet. I will do this tomorrow.
+>
+> but I haven't received your design for this part.
+> This is the urgent task to finish the next paper in time.
+>
+> Best regards,
+> Kiminori.
+> 
