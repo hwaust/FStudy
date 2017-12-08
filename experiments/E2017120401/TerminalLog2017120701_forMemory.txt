@@ -1,0 +1,94 @@
+
+PS D:\data> .\E2017120401.bat 4 mem
+java -Xmx16g -Xms10g -XX:+PrintGCApplicationStoppedTime -cp bxstudy.jar basex.ORIG  -db xmark600 -run 5 -query xm4.org -
+f H:\data\results -st mem
+Processing: database=xmark600, querykey=xm4.org, storage=memory
+Total time for which application threads were stopped: 0.0111345 seconds, Stopping threads took: 0.0000176 seconds
+Used memory: 102 MB -> 1 MB of 9813 MB. Time cost: 11 ms.
+Total time for which application threads were stopped: 0.0000426 seconds, Stopping threads took: 0.0000218 seconds
+Total time for which application threads were stopped: 0.0000640 seconds, Stopping threads took: 0.0000163 seconds
+Total time for which application threads were stopped: 0.0000813 seconds, Stopping threads took: 0.0000413 seconds
+Total time for which application threads were stopped: 0.0000442 seconds, Stopping threads took: 0.0000195 seconds
+Total time for which application threads were stopped: 0.0840122 seconds, Stopping threads took: 0.0000182 seconds
+Used memory: 8699 MB -> 1 MB of 9813 MB. Time cost: 84 ms.
+Total time for which application threads were stopped: 0.0504499 seconds, Stopping threads took: 0.0000186 seconds
+Used memory: 8648 MB -> 1 MB of 9813 MB. Time cost: 51 ms.
+Total time for which application threads were stopped: 0.0000419 seconds, Stopping threads took: 0.0000179 seconds
+Total time for which application threads were stopped: 0.0320496 seconds, Stopping threads took: 0.0000176 seconds
+Used memory: 8648 MB -> 1 MB of 9813 MB. Time cost: 32 ms.
+Total time for which application threads were stopped: 0.0373990 seconds, Stopping threads took: 0.0000214 seconds
+Used memory: 8648 MB -> 1 MB of 9813 MB. Time cost: 38 ms.
+
+Log data saved to H:\data\results\xmark600_xm4.org_mem_20171207_185508.txt
+PS D:\data> .\E2017120401.bat 5 mem
+java -Xmx16g -Xms10g -XX:+PrintGCApplicationStoppedTime -cp bxstudy.jar basex.ORIG  -db xmark600 -run 5 -query xm5.org -
+f H:\data\results -st mem
+Processing: database=xmark600, querykey=xm5.org, storage=memory
+Total time for which application threads were stopped: 0.0108932 seconds, Stopping threads took: 0.0000131 seconds
+Used memory: 102 MB -> 1 MB of 9813 MB. Time cost: 11 ms.
+Total time for which application threads were stopped: 0.0000627 seconds, Stopping threads took: 0.0000195 seconds
+Total time for which application threads were stopped: 0.0000426 seconds, Stopping threads took: 0.0000198 seconds
+Total time for which application threads were stopped: 0.0000726 seconds, Stopping threads took: 0.0000182 seconds
+Total time for which application threads were stopped: 0.6227270 seconds, Stopping threads took: 0.0000163 seconds
+Total time for which application threads were stopped: 0.0571349 seconds, Stopping threads took: 0.0000234 seconds
+Used memory: 3905 MB -> 1 MB of 9813 MB. Time cost: 57 ms.
+Total time for which application threads were stopped: 0.2102134 seconds, Stopping threads took: 0.0000150 seconds
+Total time for which application threads were stopped: 0.0211938 seconds, Stopping threads took: 0.0000189 seconds
+Used memory: 3855 MB -> 1 MB of 9813 MB. Time cost: 22 ms.
+Total time for which application threads were stopped: 0.0000413 seconds, Stopping threads took: 0.0000189 seconds
+Total time for which application threads were stopped: 0.2049044 seconds, Stopping threads took: 0.0000150 seconds
+Total time for which application threads were stopped: 0.0208534 seconds, Stopping threads took: 0.0000179 seconds
+Used memory: 3855 MB -> 1 MB of 9813 MB. Time cost: 21 ms.
+Total time for which application threads were stopped: 0.2358103 seconds, Stopping threads took: 0.0000170 seconds
+Total time for which application threads were stopped: 0.0210306 seconds, Stopping threads took: 0.0000176 seconds
+Used memory: 3855 MB -> 1 MB of 9813 MB. Time cost: 21 ms.
+Total time for which application threads were stopped: 0.2065498 seconds, Stopping threads took: 0.0000160 seconds
+
+Log data saved to H:\data\results\xmark600_xm5.org_mem_20171207_192017.txt
+PS D:\data> .\E2017120401.bat 6 mem
+java -Xmx16g -Xms10g -XX:+PrintGCApplicationStoppedTime -cp bxstudy.jar basex.ORIG  -db xmark600 -run 5 -query xm6.org -
+f H:\data\results -st mem
+Processing: database=xmark600, querykey=xm6.org, storage=memory
+Total time for which application threads were stopped: 0.0096558 seconds, Stopping threads took: 0.0000141 seconds
+Used memory: 102 MB -> 1 MB of 9813 MB. Time cost: 10 ms.
+Total time for which application threads were stopped: 0.0000573 seconds, Stopping threads took: 0.0000182 seconds
+Total time for which application threads were stopped: 0.0000749 seconds, Stopping threads took: 0.0000550 seconds
+Total time for which application threads were stopped: 0.0000938 seconds, Stopping threads took: 0.0000470 seconds
+Total time for which application threads were stopped: 0.1128155 seconds, Stopping threads took: 0.0000182 seconds
+Used memory: 8034 MB -> 1 MB of 9813 MB. Time cost: 113 ms.
+Total time for which application threads were stopped: 0.0351139 seconds, Stopping threads took: 0.0000163 seconds
+Used memory: 7983 MB -> 1 MB of 9813 MB. Time cost: 35 ms.
+Total time for which application threads were stopped: 0.0000627 seconds, Stopping threads took: 0.0000410 seconds
+Total time for which application threads were stopped: 0.0385417 seconds, Stopping threads took: 0.0000176 seconds
+Used memory: 7983 MB -> 1 MB of 9813 MB. Time cost: 39 ms.
+Total time for which application threads were stopped: 0.0344339 seconds, Stopping threads took: 0.0000170 seconds
+Used memory: 7983 MB -> 1 MB of 9813 MB. Time cost: 35 ms.
+
+Log data saved to H:\data\results\xmark600_xm6.org_mem_20171207_193414.txt
+PS D:\data> .\E2017120401.bat 3 mem
+java -Xmx16g -Xms10g -XX:+PrintGCApplicationStoppedTime -cp bxstudy.jar basex.ORIG  -db xmark600 -run 5 -query xm3.org -
+f H:\data\results -st mem
+Processing: database=xmark600, querykey=xm3.org, storage=memory
+Total time for which application threads were stopped: 0.0102840 seconds, Stopping threads took: 0.0000112 seconds
+Used memory: 102 MB -> 1 MB of 9813 MB. Time cost: 11 ms.
+Total time for which application threads were stopped: 0.0000704 seconds, Stopping threads took: 0.0000189 seconds
+Total time for which application threads were stopped: 0.0000704 seconds, Stopping threads took: 0.0000499 seconds
+Total time for which application threads were stopped: 0.0000656 seconds, Stopping threads took: 0.0000192 seconds
+Total time for which application threads were stopped: 0.6036717 seconds, Stopping threads took: 0.0000150 seconds
+Total time for which application threads were stopped: 0.0549894 seconds, Stopping threads took: 0.0000170 seconds
+Used memory: 3713 MB -> 1 MB of 9813 MB. Time cost: 55 ms.
+Total time for which application threads were stopped: 0.2205882 seconds, Stopping threads took: 0.0000157 seconds
+Total time for which application threads were stopped: 0.0205932 seconds, Stopping threads took: 0.0000176 seconds
+Used memory: 3663 MB -> 1 MB of 9813 MB. Time cost: 20 ms.
+Total time for which application threads were stopped: 0.0000454 seconds, Stopping threads took: 0.0000214 seconds
+Total time for which application threads were stopped: 0.1962165 seconds, Stopping threads took: 0.0000150 seconds
+Total time for which application threads were stopped: 0.0211135 seconds, Stopping threads took: 0.0000179 seconds
+Used memory: 3663 MB -> 1 MB of 9813 MB. Time cost: 21 ms.
+Total time for which application threads were stopped: 0.2348696 seconds, Stopping threads took: 0.0000160 seconds
+Total time for which application threads were stopped: 0.0217538 seconds, Stopping threads took: 0.0000182 seconds
+Used memory: 3663 MB -> 1 MB of 9813 MB. Time cost: 22 ms.
+Total time for which application threads were stopped: 0.2041367 seconds, Stopping threads took: 0.0000166 seconds
+
+Log data saved to H:\data\results\xmark600_xm3.org_mem_20171207_195006.txt
+PS D:\data>
+
