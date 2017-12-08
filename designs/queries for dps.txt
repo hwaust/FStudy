@@ -1,0 +1,32 @@
+
+
+xm1.dps: /site/*
+xm1.dps: descendant-or-self::*[...]
+Reason: Since /site//* is inevitable, this is the only way I can design.  
+
+xm2.dps: /site//incategory
+xm2.dps: self::*[./@category="category52"]/parent::item/@id
+Reason:  //incategory can be optimized by adding the missing steps by Basex itself.
+Thus, it is efficient. Also, incategory falls inside fragments.
+
+ 
+xm3.dps: /site//open_auction
+xm3.dps: bidder[last()]
+Reason: the same as that of xm2.dps. 
+  
+xm4.dps: /site/regions/*/item
+xm4.dps: self::*[...]
+Reason: The location steps till item can be fficient processed by path index. 
+The suffix query can be evaluated inside fragments.
+
+xm5.dps: /site/open_auctions/open_auction
+xm5.dps: bidder/increase
+open_auctions are node that on pruned trees but open_auction is not. 
+Based on the previous resutls, xm5b.dps is faster. I follow xm5b.dps
+xm5a.dps: /site/open_auctions/open_auction/bidder + increase
+xm5b.dps: /site/open_auctions/open_auction + bidder/increase
+
+xm6.dps: /site/regions/*[...]/item
+xm6.dps: description/parlist/listitem
+Reason: This design tries to use path index to evaluate location steps
+till item, including the predicate. 
