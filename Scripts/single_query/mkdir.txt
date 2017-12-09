@@ -1,0 +1,5 @@
+rm hao
+mkdir hao
+cd hao
+mkdir data
+exit

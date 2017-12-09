@@ -1,0 +1,2 @@
+cd hao
+java -cp BaseX867.jar org.basex.BaseX -c "create db xmark1_16_20K data/xmark1_16_20K_20171126.xml"

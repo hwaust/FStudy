@@ -1,0 +1,1 @@
+java -Xmx12g -Xms6g -cp basex867.jar org.basex.BaseXServer 

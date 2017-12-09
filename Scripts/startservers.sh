@@ -1,0 +1,1 @@
+java -Xmx6g -Xms6g -cp /home/matsu-lab/hao/BaseX867.jar org.basex.BaseXServer

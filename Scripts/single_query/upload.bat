@@ -1,0 +1,1 @@
+pscp -pw root00 d:\data\BaseX867.jar matsu-lab@172.21.52.50:/home/matsu-lab/hao/fragment/BaseX867.jar 
