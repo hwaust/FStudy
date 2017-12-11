@@ -1,20 +1,36 @@
-Serialization
 
-http://docs.basex.org/wiki/Serialization
+From XSLT and XQuery Serialization 3.1 [1], I found that in adaptive
+mode, items are serialized by their types. This type recogonition
+brings an overhead the serialization. For the XML mode, serializes the
+normalized sequence as an XML entity that MUST satisfy the rules for a
+well-formed XML document. Since the results of prefix meet the
+requriement of XML mode, the XML mode should be the fastest mode.
+I then did the experiment to prove that.
 
-fn:serialize($arg as item()*) as xs:string
+In basex, serialization has eight modes: xml, xhtml, html, basex,
+adaptive, csv, text, json. Only the first five modes return the
+results that meet our requriement. I then did the following query
+100 times on XMark10.
 
-xml, xhtml, html, text, json, adaptive, csv, basex
+------------------------------ query ------------------------------
+for $node in db:open('xmark10')//keyword
+  return (db:open-pre($node), $node)
+------------------------------ Results -----------------------------
+xml      execution time: 4914.38 ms, results.length = 51381 KiB.
+xhtml    execution time: 5137.99 ms, results.length = 51381 KiB.
+html     execution time: 5155.35 ms, results.length = 51381 KiB.
+adaptive execution time: 5157.89 ms, results.length = 54133 KiB.
+basex    execution time: 5065.90 ms, results.length = 54133 KiB.
+--------------------------------------------------------------------
+
+The results show that using XML mode is the fastest way. Thus,
+I will use XML mode for serialization in the experiment.
 
 
-basex is used as the default serialization method: nodes are serialized as XML,
-atomic values are serialized as string, and items of binary type are output in
-their native byte representation. Function items (including maps and arrays) are
-output just like with the adaptive method.
 
-csv allows you to output XML nodes as CSV data (see the CSV Module for more
-details).
 
+[1] XSLT and XQuery Serialization 3.1,
+https://www.w3.org/TR/xslt-xquery-serialization-31/
 
 
 
@@ -34,16 +50,31 @@ basex: execution time: 4461.20 ms, results.length() = 47650 KiB.
 
 ----------------------------- Test2 -----------------------------
 declare option output:method '$mode';
+
 for $node in db:open('xmark10')//keyword
   return (db:open-pre($node), $node)
 
-xml: execution time: 4739.20 ms, results.length() = 51381 KiB.
-xhtml: execution time: 4569.50 ms, results.length() = 51381 KiB.
-html: execution time: 4770.60 ms, results.length() = 51381 KiB.
-adaptive: execution time: 4914.90 ms, results.length() = 54133 KiB.
-basex: execution time: 4814.40 ms, results.length() = 54133 KiB.
+10x run 1st
+xml      execution time: 4739.20 ms, results.length() = 51381 KiB.
+xhtml    execution time: 4569.50 ms, results.length() = 51381 KiB.
+html     execution time: 4770.60 ms, results.length() = 51381 KiB.
+adaptive execution time: 4914.90 ms, results.length() = 54133 KiB.
+basex    execution time: 4814.40 ms, results.length() = 54133 KiB.
+
+10x run 2nd
+xml      execution time: 4868.00 ms, results.length() = 51381 KiB.
+xhtml    execution time: 4831.60 ms, results.length() = 51381 KiB.
+html     execution time: 5176.30 ms, results.length() = 51381 KiB.
+adaptive execution time: 5066.60 ms, results.length() = 54133 KiB.
+basex    execution time: 4900.70 ms, results.length() = 54133 KiB.
 
 
+100x run 1st
+xml      execution time: 4914.38 ms, results.length() = 51381 KiB.
+xhtml    execution time: 5137.99 ms, results.length() = 51381 KiB.
+html     execution time: 5155.35 ms, results.length() = 51381 KiB.
+adaptive execution time: 5157.89 ms, results.length() = 54133 KiB.
+basex    execution time: 5065.90 ms, results.length() = 54133 KiB.
 
 
 ----------------------------- Test3 -----------------------------
