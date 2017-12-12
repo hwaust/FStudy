@@ -1,0 +1,41 @@
+4096[<keyword>herein<bold>redeem tape blind royal mad windsor feeling mutiny</bold>
+</keyword>
+
+4096
+<keyword>herein<bold>redeem tape blind royal mad windsor feeling mutiny</bold>
+</keyword>
+
+4024
+<keyword>mock whether antonio ways</keyword>
+
+
+
+while(alive){
+  day++;
+  me.eat(1h);
+  me.work(16h);
+  me.eat(1h);
+  me.sleep(6h);
+}
+
+Home PC
+xml      6212.92 ms, results.length = 52748 KiB.
+xhtml    6093.11 ms, results.length = 52748 KiB.
+html     6366.52 ms, results.length = 52748 KiB.
+adaptive 6167.11 ms, results.length = 52757 KiB.
+basex    6075.79 ms, results.length = 52757 KiB.
+
+Lab PC
+xml      5812.12 ms, results.length = 52748 KiB.
+xhtml    5743.87 ms, results.length = 52748 KiB.
+html     5831.62 ms, results.length = 52748 KiB.
+adaptive 5884.99 ms, results.length = 52757 KiB.
+basex    5164.04 ms, results.length = 52757 KiB.
+
+
+4096
+<keyword>herein<bold>redeem tape blind royal mad windsor feeling mutiny</bold>
+</keyword>
+
+4024
+<keyword>mock whether antonio ways</keyword>
