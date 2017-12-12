@@ -1,0 +1,43 @@
+xm1 on xmark1: 2600+
+
+I update my hypothesis 
+
+xm1.dps: /site/*
+xm1.dps: descendant-or-self::*[...]
+
+This is the most efficient partitioning. It is avaible to use a 
+prefix query like /site/*/*, but evaluating one more * takes 
+additional time. 
+
+
+ 
+xm2.dps: db:attribute("{db}", "category52")
+xm2.dps: /parent::*:incategory[ancestor::*:site/parent::document-node()]/parent::*:item/@*:id
+
+The result sizes of db:attribute(), db:attribute()/parent::incategory, and 
+db:attribute()/parent::incategory.../...item are the same. Since the prefix 
+query itself is a overhead, it is better to make it shorter as above.
+
+
+xm3c.dps: /site/open_auctions
+xm3c.dps: /open_auction/bidder[last()]
+/site/open_auctions returns to many number of open_auction.
+
+ 
+
+
+xm4c.dps: db:text("{db}", "Creditcard")/parent::*:payment
+xm4c.dps: /parent::*:item[...]
+
+      
+xm4.dps: /site/regions/*
+xm4.dps: /item[./location="United States" and ./quantity > 0 and ./payment="Creditcard" and ./description and ./name]
+
+xm5.dps: /site/open_auctions
+xm5.dps: /open_auction/bidder/increase
+
+xm6.org: /site/regions/*[name(.)="africa" or name(.)="asia"]/item/description/parlist/listitem
+xm6.dps: /site/regions/*[name(.)="africa" or name(.)="asia"]
+xm6.dps: /item/description/parlist/listitem
+
+
