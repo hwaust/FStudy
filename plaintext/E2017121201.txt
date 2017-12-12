@@ -1,0 +1,16 @@
+
+Desktop 3570K
+
+xml      4469.49 ms, results.length = 52748 KiB.
+xhtml    4413.27 ms, results.length = 52748 KiB.
+html     4549.39 ms, results.length = 52748 KiB.
+adaptive 4492.79 ms, results.length = 52757 KiB.
+basex    4410.54 ms, results.length = 52757 KiB.
+
+
+4024
+<keyword>mock whether antonio ways</keyword>
+
+4096
+<keyword>herein<bold>redeem tape blind royal mad windsor feeling mutiny</bold>
+</keyword>
