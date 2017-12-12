@@ -1,4 +1,3 @@
-
 ---------------------- Original queries ----------------------
 xm1.org: /site//*[name(.)="emailaddress" or name(.)="annotation" or name(.)="description"]
 xm2.org: /site//incategory[./@category="category52"]/parent::item/@id

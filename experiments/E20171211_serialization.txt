@@ -12,16 +12,17 @@ adaptive, csv, text, json. Only the first five modes return the
 results that meet our requriement. I then did the following query
 100 times on XMark10.
 
------------------------------- query ------------------------------
+-------------------- query ---------------------------
 for $node in db:open('xmark10')//keyword
   return (db:open-pre($node), $node)
------------------------------- Results -----------------------------
-xml      execution time: 4914.38 ms, results.length = 51381 KiB.
-xhtml    execution time: 5137.99 ms, results.length = 51381 KiB.
-html     execution time: 5155.35 ms, results.length = 51381 KiB.
-adaptive execution time: 5157.89 ms, results.length = 54133 KiB.
-basex    execution time: 5065.90 ms, results.length = 54133 KiB.
---------------------------------------------------------------------
+-------------------- Results --------------------------
+mode     execution time  results.length    
+xml         4914.38 ms     51381 KiB.
+xhtml       5137.99 ms     51381 KiB.
+html        5155.35 ms     51381 KiB.
+adaptive    5157.89 ms     54133 KiB.
+basex       5065.90 ms     54133 KiB.
+-------------------------------------------------------
 
 The results show that using XML mode is the fastest way. Thus,
 I will use XML mode for serialization in the experiment.
@@ -39,14 +40,14 @@ declare option output:method '$mode';
 for $node in db:open('xmark10')//keyword
   return $node
 
-xml: execution time: 4422.00 ms, results.length() = 47650 KiB.
-xhtml: execution time: 4266.40 ms, results.length() = 47650 KiB.
-html: execution time: 4475.50 ms, results.length() = 47650 KiB.
-text: execution time: 3811.30 ms, results.length() = 32169 KiB.
+xml: 4422.00 ms, results.length() = 47650 KiB.
+xhtml: 4266.40 ms, results.length() = 47650 KiB.
+html: 4475.50 ms, results.length() = 47650 KiB.
+text: 3811.30 ms, results.length() = 32169 KiB.
 failed to finish json
-adaptive: execution time: 4443.70 ms, results.length() = 47650 KiB.
-csv: execution time: 2969.00 ms, results.length() = 157 KiB.
-basex: execution time: 4461.20 ms, results.length() = 47650 KiB.
+adaptive: 4443.70 ms, results.length() = 47650 KiB.
+csv: 2969.00 ms, results.length() = 157 KiB.
+basex: 4461.20 ms, results.length() = 47650 KiB.
 
 ----------------------------- Test2 -----------------------------
 declare option output:method '$mode';
@@ -55,26 +56,26 @@ for $node in db:open('xmark10')//keyword
   return (db:open-pre($node), $node)
 
 10x run 1st
-xml      execution time: 4739.20 ms, results.length() = 51381 KiB.
-xhtml    execution time: 4569.50 ms, results.length() = 51381 KiB.
-html     execution time: 4770.60 ms, results.length() = 51381 KiB.
-adaptive execution time: 4914.90 ms, results.length() = 54133 KiB.
-basex    execution time: 4814.40 ms, results.length() = 54133 KiB.
+xml      4739.20 ms, results.length() = 51381 KiB.
+xhtml    4569.50 ms, results.length() = 51381 KiB.
+html     4770.60 ms, results.length() = 51381 KiB.
+adaptive 4914.90 ms, results.length() = 54133 KiB.
+basex    4814.40 ms, results.length() = 54133 KiB.
 
 10x run 2nd
-xml      execution time: 4868.00 ms, results.length() = 51381 KiB.
-xhtml    execution time: 4831.60 ms, results.length() = 51381 KiB.
-html     execution time: 5176.30 ms, results.length() = 51381 KiB.
-adaptive execution time: 5066.60 ms, results.length() = 54133 KiB.
-basex    execution time: 4900.70 ms, results.length() = 54133 KiB.
+xml      4868.00 ms, results.length() = 51381 KiB.
+xhtml    4831.60 ms, results.length() = 51381 KiB.
+html     5176.30 ms, results.length() = 51381 KiB.
+adaptive 5066.60 ms, results.length() = 54133 KiB.
+basex    4900.70 ms, results.length() = 54133 KiB.
 
 
 100x run 1st
-xml      execution time: 4914.38 ms, results.length() = 51381 KiB.
-xhtml    execution time: 5137.99 ms, results.length() = 51381 KiB.
-html     execution time: 5155.35 ms, results.length() = 51381 KiB.
-adaptive execution time: 5157.89 ms, results.length() = 54133 KiB.
-basex    execution time: 5065.90 ms, results.length() = 54133 KiB.
+xml      4914.38 ms, results.length() = 51381 KiB.
+xhtml    5137.99 ms, results.length() = 51381 KiB.
+html     5155.35 ms, results.length() = 51381 KiB.
+adaptive 5157.89 ms, results.length() = 54133 KiB.
+basex    5065.90 ms, results.length() = 54133 KiB.
 
 
 ----------------------------- Test3 -----------------------------
@@ -82,10 +83,10 @@ declare option output:method '$mode';
 for $node in db:open('xmark10')//keyword
   return (('', db:node-pre($node)), $node)
 
-xml: execution time: 5081.90 ms, results.length() = 52069 KiB.
-xhtml: execution time: 4673.40 ms, results.length() = 52069 KiB.
-html: execution time: 4878.90 ms, results.length() = 52069 KiB.
-basex: execution time: 4939.50 ms, results.length() = 55509 KiB.
+xml: 5081.90 ms, results.length() = 52069 KiB.
+xhtml: 4673.40 ms, results.length() = 52069 KiB.
+html: 4878.90 ms, results.length() = 52069 KiB.
+basex: 4939.50 ms, results.length() = 55509 KiB.
 
 
 
@@ -110,7 +111,7 @@ static void test3() throws Exception {
 				long t2 = System.currentTimeMillis();
 				total += t2 - t1;
 			}
-			System.out.printf("%s: execution time: %.2f ms, results.length() = %d KiB.\n", mode, total / 10,
+			System.out.printf("%s: %.2f ms, results.length() = %d KiB.\n", mode, total / 10,
 					size / 1024);
 		} catch (Exception ex) {
 			System.out.println("failed to finish " + mode);
@@ -139,7 +140,7 @@ static void test2() throws Exception {
 				long t2 = System.currentTimeMillis();
 				total += t2 - t1;
 			}
-			System.out.printf("%s: execution time: %.2f ms, results.length() = %d KiB.\n", mode, total / 10,
+			System.out.printf("%s: %.2f ms, results.length() = %d KiB.\n", mode, total / 10,
 					size / 1024);
 		} catch (Exception ex) {
 			System.out.println("failed to finish " + mode);
@@ -165,7 +166,7 @@ static void test1() throws Exception {
 				long t2 = System.currentTimeMillis();
 				total += t2 - t1;
 			}
-			System.out.printf("%s: execution time: %.2f ms, results.length() = %d KiB.\n", mode, total / 10,
+			System.out.printf("%s: %.2f ms, results.length() = %d KiB.\n", mode, total / 10,
 					size / 1024);
 		} catch (Exception ex) {
 			System.out.println("failed to finish " + mode);
