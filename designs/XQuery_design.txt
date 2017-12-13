@@ -1,0 +1,39 @@
+---------------------- XQ1: for prefix query  ----------------------
+let $d := array { db:open('{db}'){prefix} ! db:node-pre(.) } return
+for $i in 0 to {P} - 1 return
+    let $q := array:size($d) idiv {P} return
+    let $r := array:size($d) mod {P} return
+    let $part_length := if ($i < $r) then $q + 1
+                        else $q return
+    let $part_begin  := if ($i <= $r) then ($q + 1) * $i
+                        else $q * $i + $r return
+    insert node element part {
+         array:subarray($d, $part_begin + 1, $part_length)
+    } as last into db:open('{tmpdb}')/root
+------------------------------------------------------------------ 
+
+
+---------------------- XQ2: for suffix query  ----------------------
+declare option output:method '$mode';
+declare option output:item-separator '[';
+
+for $node in db:open('{db}'){suffix}
+ return (db:node-pre($node), $node)
+------------------------------------------------------------------ 
+
+
+q1.qx optimized
+insert node element part { 
+  (for $i_0 in (1 to 2) return 
+    element part { ("1") }) 
+} into db:open-pre("tmpdb",0)/*:root
+
+
+q2.qx optimized
+for $i_0 in (1 to 2) return 
+insert node element part { 
+  (1) 
+} into db:open-pre("tmpdb",0)/*:root
+
+
+
