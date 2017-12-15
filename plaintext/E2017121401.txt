@@ -1,0 +1,38 @@
+
+Step 1: Start all workers.
+Using super putty is a convinient way to do so.
+1) Start SuperPuTTy from D:\data\SuperPuTTY-1.4.0.8\
+2) Start multiple servers by input server's information
+   Note: don't input password
+3) Use Commands textbox at the top and enter password to login in.
+4) Create folders (This step needs to be processed only once)
+  - mkdir hao
+  - mkdir hao/data
+
+Step 2: Feed XML data
+feed xml data (This step needs to be processed only once)
+
+Step 1:
+
+Step Start multiple servers
+
+xm3d.dps: /site/open_auctions
+xm3d.dps: /open_auction/bidder[last()]
+
+            P=1   P=2   P=3   P=4   P=6   P=8
+xm3a.dps   113.2  58.5  30.1  20.2 15.8  13.5
+xm3d.dps           9.4
+
+
+.\copyXMLData.bat 16 xmark600_16_4M_20171126
+
+
+java -Xmx16g -Xms4g -cp bxstudy.jar fragmentation.exe.QueryEvaluatorDPS -iplist range:172.21.52.50:16 -dblist xmark600_16_4M:16 -key xm3a.dps -f g:\data\fragments\xmark600_16_4M_20171126 -p 4
+
+args = new String[] { "-iplist", "#4", "-dblist", "range:mfrag:0-3", "-key", "xm3a.dps", "-f",
+      "D:\\data\\fragments\\xmark1_4_20K_20171126", "-p", "4" };
+      xmark600_16_4M_20171126.xml
+
+
+Start Servers
+java -Xmx8g -Xms6g -cp /home/matsu-lab/hao/BaseX867.jar org.basex.BaseXServer -c "set mainmem true; create db xmark600_16_4M data/xmark600_16_4M_20171126.xml"
