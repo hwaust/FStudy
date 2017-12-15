@@ -3,11 +3,11 @@
 
 * Two tasks
 - Confirmation of Correctness.
-
-java -Xmx4g -Xms2g -cp bxstudy.jar tests.IntPreEfficiencyTest
 - Improvement of Efficiency of parsing.
+java -Xmx4g -Xms2g -cp bxstudy.jar tests.IntPreEfficiencyTest
 
 
+ryq948
 
 D:\data>java -Xmx4g -Xms2g -cp bxstudy.jar tests.IntPreEfficiencyTest
 ....................Time taken: 465 ms. QR.PRES.Size=704430, Results.length=52757 KiB.
@@ -28,12 +28,12 @@ QueryResultPre rd = (QueryResultPre) pes[i].sr;
 				pos++;
 			rd.results.get(pos).add(rd.values.get(j));
 		}
-
-xm1	55	MiB
-xm3	6.5	MiB
-xm4	0.6	MiB
-xm5	36	MiB
-xm6	1.3	MiB
+            input   output
+xm1	55	M
+xm3	6.5	M  6502751 = 6502751
+xm4	0.6	M
+xm5	36	M
+xm6	1.3	M
 
 
 // for debugging.
@@ -51,7 +51,7 @@ for (int i = 0; i < rs.length; i++) {
    65   +   59    =
 	     124
 
- 
+
 
 Processing Server list: localhost.mfrag0; localhost.mfrag1; localhost.mfrag2; localhost.mfrag3;
 Query Key: xm3a.dps

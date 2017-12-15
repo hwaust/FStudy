@@ -56,3 +56,27 @@ for /L %%i IN (0,1,%end%) DO (
   pscp %pwd% %srcdir%\mfrag%%i.xml %usr%@172.21.52.!ip0!:%dstdir%/data/%dstname%
 )
 ----------------------------------------------------------------------
+
+
+
+* Do fragmentation
+
+Apply fragmentation to XMark$1 and output to a specified folder.
+
+Arguments
+%1     $1      XMark factor.
+%2     $n      Number of merged trees.
+%3     $ms     Maxsize
+
+
+------------------------- contents ----------------------------------
+@echo off
+
+SET  jvm=-Xmx2g -Xms2g
+SET app1=-cp bxstudy.jar fragmentation.exe.TreeMaker
+SET app2=-cp bxstudy.jar fragmentation.exe.TreeExporter
+SET args=-db xmark%1 -n %2 -ms %3 -seed 20171126 -f d:\data\fragments
+
+java %jvm% %app1% %args%
+java %jvm% %app2% %args%
+----------------------------------------------------------------------

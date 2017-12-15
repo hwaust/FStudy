@@ -1,22 +1,22 @@
 \section{E2017120401: Baseline Performance Evaluation}
- 
+
 \subsection{Purpose}
 To understand the baseline performance by using
-the queries in ADBIS submission for XMark600. 
+the queries in ADBIS submission for XMark600.
 
-\subsection{Experiment Design}  
+\subsection{Experiment Design}
 
-We run a BaseX server $Server$ for processing XPath queries on specified 
+We run a BaseX server $Server$ for processing XPath queries on specified
 databases. Server starts by the following command on HaoDesk.
 
 \verb| java -Xmx4g -xms2g -cp BaseX897.jar org.basex.BaseXServer|
 
 Note the databases in Server are NOT in main memory mode.
 
-We run a java program $Japp$ (that is the class \texttt{basex.ORIG} 
+We run a java program $Japp$ (that is the class \texttt{basex.ORIG}
 in repository/src/fragmentation/java/basex)
 on HaoDesk in charge of sending an input query to
-Server via local network and saving results returned from Server. An input query 
+Server via local network and saving results returned from Server. An input query
 Query that will be processed in Japp is first rewritten into the following XQuery expression:
 
 \verb|for $node in db:open('xmark600')Query return $node|
@@ -24,17 +24,17 @@ Query that will be processed in Japp is first rewritten into the following XQuer
 The results of the input query are stored either in memory or on disk depending on Japp's settings. When in memory, the results will be then discarded after the
 experiments, while on disk, the results will be preserved in files. One more thing, the maximum available memory for Japp was set to 12 GB.
 
-\subsection{Settings} 
+\subsection{Settings}
 
 \begin{itemize}
-	
+
 	\item \textbf{Hardware} HaoDesk (see \ref{HaoDesk})\\
 	\item \textbf{Software} BaseX 6.8.7, Java 1.8.0\_151(x64).\\
-	\item \textbf{XML Dataset} XMark600.xml (see Table~\ref{table:xmark}), 
+	\item \textbf{XML Dataset} XMark600.xml (see Table~\ref{table:xmark}),
 	from which a BaseX databases `xmark600' is created in a BaseX server using command:\\
 	\verb|create db xmark600 xmark600.xml|
 	\item \textbf{Queries} xm1.org -- xm6.org (see Table~\ref{table:xmarkqueries}).
-	
+
 \end{itemize}
 
 
@@ -42,7 +42,7 @@ experiments, while on disk, the results will be preserved in files. One more thi
 
 \textbf{Timing} The execution time is measured in Japp. The time period between
 starting sending a query and finishing receiving the results is measured as
-execution time. Each query is evaluated 5 times. 
+execution time. Each query is evaluated 5 times.
 
 \textbf{Process Results}
 We disgard the execution time of the first run and take the average of the rest as
@@ -51,38 +51,38 @@ the final execution time listed in Table~\ref{table:E2017120401_1}.
 
 \textbf{Original Experiment Data}
 
-All the original results containing execution time of queries and scripts used 
+All the original results containing execution time of queries and scripts used
 in the experiments  are stored to \texttt{experiments/E2017120401} relative to
 the current folder that stores this report.\\
 
-Note: The result of xm2.org is always empty. This is because there is no \texttt{incategory} node 
-with attribute that has the content of \texttt{category52}. 
+Note: The result of xm2.org is always empty. This is because there is no \texttt{incategory} node
+with attribute that has the content of \texttt{category52}.
 
 
 \begin{table}[t]
 	\caption{Experiment Results of E2017120401.}
 	\label{table:E2017120401_1}
 	\centering
-	\begin{tabular}{c|c|c|r}
+	\begin{tabular}{c|c|c|c|c}
 		\hline \hline
-		query  & storage & time(s)  &   result size  \\
+		query  & storage & time(s)  &  nodes (M) &  result size (MiB)  \\
 		\hline \hline
-		xm1.org &  disk   & 3122.88  & 60,048,845,586 \\
+		xm1.org &  disk   & 3122.88  &  55 &  57,267  \\  % 60,048,845,586
 		& memory  &    N/A   &  \\
 		\hline
-		xm2.org &  disk   &    0.01  &              0 \\
+		xm2.org &  disk   &    0.01  &  0 &            0 \\
 		& memory  &    0.01  &  \\
 		\hline
-		xm3.org &  disk   &  63.32  &    922,270,281 \\
+		xm3.org &  disk   &  63.32  &  6.5 &  880 \\  % 922,270,281 | 883,253,777    6502751 = 6502751
 		& memory  &  63.42  &  \\
 		\hline
-		xm4.org &  disk   &  101.51  &  1,583,959,305 \\
+		xm4.org &  disk   &  101.51  & 0.6 & 1,511 \\ %1,583,959,305  | 1,568,902,047,    587,230 = 587,230
 		& memory  &  101.01  &  \\
 		\hline
-		xm5.org &  disk   &  74.85  &    989,346,990 \\
+		xm5.org &  disk   &  74.85  &  35.9 &  944 \\ %35912399 | 989,346,990
 		& memory  &  75.05   &   \\
 		\hline
-		xm6.org &  disk   &  71.29   &  1,351,708,787 \\
+		xm6.org &  disk   &  71.29   &  1.3 & 1,289 \\ %1,351,708,787
 		& memory  &  70.07   &   \\
 		\hline \hline
 	\end{tabular}
@@ -96,16 +96,16 @@ with attribute that has the content of \texttt{category52}.
 
 \begin{itemize}
 \item \textbf{Storage has small influence on execution time}
- 
+
 We noticed one thing that the execution time is pretty similar for
 all the available queries. This is because the bottleneck is on the
 worker's side but not on the master's side. For example, for xm4.org,
-it takes 113s to receive about 1500 MB data, i.e. around 13.36 MB/s, 
-which is much slower than the maximum speed of both memory and disk. 
+it takes 113s to receive about 1500 MB data, i.e. around 13.36 MB/s,
+which is much slower than the maximum speed of both memory and disk.
 Thus, the performance are much similar. We also notice that for some
-queries such as xm3.org and xm5.org, in-memory case is even a bit 
-slower than on-disk case, one possible explanation is that the time 
-was taken by calling System.gc(). 
+queries such as xm3.org and xm5.org, in-memory case is even a bit
+slower than on-disk case, one possible explanation is that the time
+was taken by calling System.gc().
 
 
 \item \textbf{The execution time is steady}
@@ -113,10 +113,9 @@ was taken by calling System.gc().
 Compared with the ADBIS study, the execution time of each run is more
 steady. Our explanation to this result is that for very large scale
 of data, the fluctuation has a weaker influence on the execution
-time (increased from milliseconds to seconds). 
+time (increased from milliseconds to seconds).
 
 
 \end{itemize}
 
 
- 
