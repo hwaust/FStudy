@@ -1,0 +1,300 @@
+Prefix query done.
+Saving output of P1
+Exception in thread "main" java.io.IOException:
+Query:
+declare option output:method 'basex'; declare option output:item-separator '[';
+for $pre in ft:tokenize(db:open-pre('xmark600_16_4M_tmp', 2*2 + 1)) return for $
+node in db:open-pre('xmark600_16_4M', xs:integer($pre))/description/parlist/list
+item return (db:node-pre($node), $node)
+
+Compiling:
+- pre-evaluate (2 * 2) to xs:integer
+- pre-evaluate (4 + 1) to xs:integer
+
+Optimized Query:
+return for $node_1 in db:open-pre("xmark600_16_4M", $pre_0 cast as xs:integer?)/
+description/parlist/listitem return (db:node-pre($node_1), $node_1)
+
+Error:
+Stopped at ., 3/36:
+[bxerr:BXDB0009] Database 'xmark600_16_4M_tmp' has no node with pre value 5.
+        at basex.BaseXClient.execute(BaseXClient.java:98)
+        at basex.BaseXClient.execute(BaseXClient.java:112)
+        at fragmentation.exe.QueryEvaluatorDPS.main(QueryEvaluatorDPS.java:102)
+PS D:\data> java -Xmx16g -Xms4g -cp bxstudy.jar fragmentation.exe.QueryEvaluator
+DPS -iplist range:172.21.52.50:16 -dblist xmark600_16_4M:16 -key xm6.dps -f g:\d
+ata\fragments\xmark600_16_4M_20171126 -p 3 -debug on -serial off
+Processing xm6.dps; Ns = 16; P = 3; parallel; debug; Input folder: g:\data\fragm
+ents\xmark600_16_4M_20171126
+Prepareing temporary databases...
+Executing prefix queries...
+PRE_11: Execution time = 4 ms
+PRE_13: Execution time = 5 ms
+PRE_15: Execution time = 5 ms
+PRE_8: Execution time = 6 ms
+PRE_3: Execution time = 5 ms
+PRE_10: Execution time = 4 ms
+PRE_9: Execution time = 5 ms
+PRE_0: Execution time = 6 ms
+PRE_1: Execution time = 17 ms
+PRE_6: Execution time = 63 ms
+PRE_5: Execution time = 72 ms
+PRE_4: Execution time = 73 ms
+PRE_7: Execution time = 76 ms
+PRE_12: Execution time = 112 ms
+PRE_14: Execution time = 112 ms
+PRE_2: Execution time = 131 ms
+Saving temporary databases...
+Prefix query done.
+Saving output of P1
+Exception in thread "main" java.io.IOException:
+Query:
+declare option output:method 'basex'; declare option output:item-separator '[';
+for $pre in ft:tokenize(db:open-pre('xmark600_16_4M_tmp', 2*2 + 1)) return for $
+node in db:open-pre('xmark600_16_4M', xs:integer($pre))/description/parlist/list
+item return (db:node-pre($node), $node)
+
+Compiling:
+- pre-evaluate (2 * 2) to xs:integer
+- pre-evaluate (4 + 1) to xs:integer
+
+Optimized Query:
+return for $node_1 in db:open-pre("xmark600_16_4M", $pre_0 cast as xs:integer?)/
+description/parlist/listitem return (db:node-pre($node_1), $node_1)
+
+Error:
+Stopped at ., 3/36:
+[bxerr:BXDB0009] Database 'xmark600_16_4M_tmp' has no node with pre value 5.
+        at basex.BaseXClient.execute(BaseXClient.java:98)
+        at basex.BaseXClient.execute(BaseXClient.java:112)
+        at fragmentation.exe.QueryEvaluatorDPS.main(QueryEvaluatorDPS.java:102)
+PS D:\data> java -Xmx16g -Xms4g -cp bxstudy.jar fragmentation.exe.QueryEvaluator
+DPS -iplist range:172.21.52.50:16 -dblist xmark600_16_4M:16 -key xm6.dps -f g:\d
+ata\fragments\xmark600_16_4M_20171126 -p 1 -debug on -serial off
+Processing xm6.dps; Ns = 16; P = 1; parallel; debug; Input folder: g:\data\fragm
+ents\xmark600_16_4M_20171126
+Prepareing temporary databases...
+Executing prefix queries...
+PRE_3: Execution time = 5 ms
+PRE_15: Execution time = 5 ms
+PRE_13: Execution time = 5 ms
+PRE_8: Execution time = 5 ms
+PRE_10: Execution time = 5 ms
+PRE_0: Execution time = 6 ms
+PRE_11: Execution time = 5 ms
+PRE_9: Execution time = 4 ms
+PRE_1: Execution time = 14 ms
+PRE_6: Execution time = 62 ms
+PRE_5: Execution time = 72 ms
+PRE_7: Execution time = 72 ms
+PRE_4: Execution time = 72 ms
+PRE_12: Execution time = 112 ms
+PRE_14: Execution time = 112 ms
+PRE_2: Execution time = 131 ms
+Saving temporary databases...
+Prefix query done.
+Saving output of P1
+Exception in thread "main" java.io.IOException:
+Query:
+declare option output:method 'basex'; declare option output:item-separator '[';
+for $pre in ft:tokenize(db:open-pre('xmark600_16_4M_tmp', 1*2 + 1)) return for $
+node in db:open-pre('xmark600_16_4M', xs:integer($pre))/description/parlist/list
+item return (db:node-pre($node), $node)
+
+Compiling:
+- pre-evaluate (1 * 2) to xs:integer
+- pre-evaluate (2 + 1) to xs:integer
+
+Optimized Query:
+return for $node_1 in db:open-pre("xmark600_16_4M", $pre_0 cast as xs:integer?)/
+description/parlist/listitem return (db:node-pre($node_1), $node_1)
+
+Error:
+Stopped at ., 3/36:
+[bxerr:BXDB0009] Database 'xmark600_16_4M_tmp' has no node with pre value 3.
+        at basex.BaseXClient.execute(BaseXClient.java:98)
+        at basex.BaseXClient.execute(BaseXClient.java:112)
+        at fragmentation.exe.QueryEvaluatorDPS.main(QueryEvaluatorDPS.java:102)
+PS D:\data> java -Xmx16g -Xms4g -cp bxstudy.jar fragmentation.exe.QueryEvaluator
+DPS -iplist range:172.21.52.50:16 -dblist xmark600_16_4M:16 -key xm3d.dps -f g:\
+data\fragments\xmark600_16_4M_20171126 -p 1 -debug on -serial off
+Processing xm3d.dps; Ns = 16; P = 1; parallel; debug; Input folder: g:\data\frag
+ments\xmark600_16_4M_20171126
+Prepareing temporary databases...
+Executing prefix queries...
+PRE_4: Execution time = 4 ms
+PRE_12: Execution time = 5 ms
+PRE_14: Execution time = 5 ms
+PRE_9: Execution time = 6 ms
+PRE_15: Execution time = 5 ms
+PRE_5: Execution time = 6 ms
+PRE_13: Execution time = 5 ms
+PRE_10: Execution time = 5 ms
+PRE_8: Execution time = 5 ms
+PRE_7: Execution time = 5 ms
+PRE_2: Execution time = 5 ms
+PRE_1: Execution time = 5 ms
+PRE_6: Execution time = 5 ms
+PRE_0: Execution time = 5 ms
+PRE_3: Execution time = 4 ms
+PRE_11: Execution time = 5 ms
+Saving temporary databases...
+Prefix query done.
+Saving output of P1
+Evaluating suffix queries...
+SUFFIX_T_6_F_0: Execution time = 3188 ms
+SUFFIX_T_0_F_0: Execution time = 5759 ms
+SUFFIX_T_9_F_0: Execution time = 6155 ms
+SUFFIX_T_4_F_0: Execution time = 6766 ms
+SUFFIX_T_7_F_0: Execution time = 7036 ms
+SUFFIX_T_1_F_0: Execution time = 7114 ms
+SUFFIX_T_3_F_0: Execution time = 7715 ms
+SUFFIX_T_13_F_0: Execution time = 7709 ms
+SUFFIX_T_2_F_0: Execution time = 7761 ms
+SUFFIX_T_15_F_0: Execution time = 7978 ms
+SUFFIX_T_12_F_0: Execution time = 8257 ms
+SUFFIX_T_5_F_0: Execution time = 8387 ms
+SUFFIX_T_14_F_0: Execution time = 8690 ms
+SUFFIX_T_11_F_0: Execution time = 8809 ms
+SUFFIX_T_8_F_0: Execution time = 9232 ms
+SUFFIX_T_10_F_0: Execution time = 9314 ms
+Evaluation of Suffix queries done.
+Starting merging...
+totals=6502751
+Regrouping nodes...
+Saving results...
+Tprefix=11 ms, Tsufix=9314 ms, Tmerge=6008 ms, Tsave=5094 ms ==> g:\data\fragmen
+ts\xmark600_16_4M_20171126\xm3d.dps\
+PS D:\data> java -Xmx16g -Xms4g -cp bxstudy.jar fragmentation.exe.QueryEvaluator
+DPS -iplist range:172.21.52.50:16 -dblist xmark600_16_4M:16 -key xm4a.dps -f g:\
+data\fragments\xmark600_16_4M_20171126 -p 2 -debug on -serial off
+Processing xm4a.dps; Ns = 16; P = 2; parallel; debug; Input folder: g:\data\frag
+ments\xmark600_16_4M_20171126
+Prepareing temporary databases...
+Executing prefix queries...
+PRE_14: Execution time = 3 ms
+PRE_8: Execution time = 6 ms
+PRE_12: Execution time = 5 ms
+PRE_13: Execution time = 5 ms
+PRE_0: Execution time = 6 ms
+PRE_6: Execution time = 6 ms
+PRE_9: Execution time = 5 ms
+PRE_1: Execution time = 5 ms
+PRE_3: Execution time = 5 ms
+PRE_4: Execution time = 5 ms
+PRE_2: Execution time = 5 ms
+PRE_7: Execution time = 4 ms
+PRE_5: Execution time = 5 ms
+PRE_10: Execution time = 4 ms
+PRE_15: Execution time = 6 ms
+PRE_11: Execution time = 6 ms
+Saving temporary databases...
+Prefix query done.
+Saving output of P1
+Evaluating suffix queries...
+SUFFIX_T_5_F_1: Execution time = 2658 ms
+SUFFIX_T_4_F_1: Execution time = 3269 ms
+SUFFIX_T_10_F_0: Execution time = 3941 ms
+SUFFIX_T_8_F_1: Execution time = 5570 ms
+SUFFIX_T_10_F_1: Execution time = 6254 ms
+SUFFIX_T_11_F_0: Execution time = 8602 ms
+SUFFIX_T_1_F_0: Execution time = 8857 ms
+SUFFIX_T_1_F_1: Execution time = 9023 ms
+SUFFIX_T_4_F_0: Execution time = 9254 ms
+SUFFIX_T_5_F_0: Execution time = 9331 ms
+SUFFIX_T_2_F_1: Execution time = 9358 ms
+SUFFIX_T_2_F_0: Execution time = 9363 ms
+SUFFIX_T_11_F_1: Execution time = 9378 ms
+SUFFIX_T_3_F_1: Execution time = 9583 ms
+SUFFIX_T_6_F_0: Execution time = 11990 ms
+SUFFIX_T_9_F_0: Execution time = 12241 ms
+SUFFIX_T_3_F_0: Execution time = 12603 ms
+SUFFIX_T_8_F_0: Execution time = 12609 ms
+SUFFIX_T_9_F_1: Execution time = 12654 ms
+SUFFIX_T_0_F_0: Execution time = 12742 ms
+SUFFIX_T_6_F_1: Execution time = 12876 ms
+SUFFIX_T_0_F_1: Execution time = 14283 ms
+SUFFIX_T_7_F_1: Execution time = 14334 ms
+SUFFIX_T_7_F_0: Execution time = 14540 ms
+SUFFIX_T_12_F_1: Execution time = 15069 ms
+SUFFIX_T_12_F_0: Execution time = 15222 ms
+SUFFIX_T_13_F_1: Execution time = 15243 ms
+SUFFIX_T_14_F_1: Execution time = 15254 ms
+SUFFIX_T_14_F_0: Execution time = 15257 ms
+SUFFIX_T_13_F_0: Execution time = 16025 ms
+SUFFIX_T_15_F_0: Execution time = 16158 ms
+SUFFIX_T_15_F_1: Execution time = 16285 ms
+Evaluation of Suffix queries done.
+Starting merging...
+totals=587230
+Regrouping nodes...
+Saving results...
+Tprefix=11 ms, Tsufix=16285 ms, Tmerge=11019 ms, Tsave=7692 ms ==> g:\data\fragm
+ents\xmark600_16_4M_20171126\xm4a.dps\
+PS D:\data> java -Xmx16g -Xms4g -cp bxstudy.jar fragmentation.exe.QueryEvaluator
+DPS -iplist range:172.21.52.50:16 -dblist xmark600_16_4M:16 -key xm4a.dps -f g:\
+data\fragments\xmark600_16_4M_20171126 -p 2 -debug on -serial off
+Processing xm4a.dps; Ns = 16; P = 2; parallel; debug; Input folder: g:\data\frag
+ments\xmark600_16_4M_20171126
+Prepareing temporary databases...
+Executing prefix queries...
+PRE_6: Execution time = 3 ms
+PRE_4: Execution time = 5 ms
+PRE_10: Execution time = 5 ms
+PRE_2: Execution time = 5 ms
+PRE_5: Execution time = 5 ms
+PRE_9: Execution time = 4 ms
+PRE_0: Execution time = 5 ms
+PRE_3: Execution time = 5 ms
+PRE_1: Execution time = 4 ms
+PRE_7: Execution time = 6 ms
+PRE_13: Execution time = 6 ms
+PRE_15: Execution time = 5 ms
+PRE_12: Execution time = 6 ms
+PRE_8: Execution time = 5 ms
+PRE_14: Execution time = 4 ms
+PRE_11: Execution time = 5 ms
+Saving temporary databases...
+Prefix query done.
+Saving output of P1
+Evaluating suffix queries...
+SUFFIX_T_4_F_1: Execution time = 2409 ms
+SUFFIX_T_5_F_1: Execution time = 2950 ms
+SUFFIX_T_8_F_1: Execution time = 5380 ms
+SUFFIX_T_10_F_0: Execution time = 6009 ms
+SUFFIX_T_10_F_1: Execution time = 6395 ms
+SUFFIX_T_5_F_0: Execution time = 7364 ms
+SUFFIX_T_11_F_0: Execution time = 8334 ms
+SUFFIX_T_4_F_0: Execution time = 8376 ms
+SUFFIX_T_1_F_0: Execution time = 8845 ms
+SUFFIX_T_11_F_1: Execution time = 8935 ms
+SUFFIX_T_2_F_1: Execution time = 8970 ms
+SUFFIX_T_2_F_0: Execution time = 9074 ms
+SUFFIX_T_1_F_1: Execution time = 9260 ms
+SUFFIX_T_3_F_1: Execution time = 9601 ms
+SUFFIX_T_8_F_0: Execution time = 11539 ms
+SUFFIX_T_6_F_0: Execution time = 11581 ms
+SUFFIX_T_6_F_1: Execution time = 12165 ms
+SUFFIX_T_3_F_0: Execution time = 12238 ms
+SUFFIX_T_9_F_1: Execution time = 12405 ms
+SUFFIX_T_9_F_0: Execution time = 12451 ms
+SUFFIX_T_0_F_0: Execution time = 12534 ms
+SUFFIX_T_7_F_1: Execution time = 13549 ms
+SUFFIX_T_0_F_1: Execution time = 14080 ms
+SUFFIX_T_7_F_0: Execution time = 14589 ms
+SUFFIX_T_13_F_1: Execution time = 14772 ms
+SUFFIX_T_12_F_0: Execution time = 14938 ms
+SUFFIX_T_14_F_0: Execution time = 15045 ms
+SUFFIX_T_12_F_1: Execution time = 15094 ms
+SUFFIX_T_14_F_1: Execution time = 15107 ms
+SUFFIX_T_15_F_1: Execution time = 15745 ms
+SUFFIX_T_13_F_0: Execution time = 15794 ms
+SUFFIX_T_15_F_0: Execution time = 16043 ms
+Evaluation of Suffix queries done.
+Starting merging...
+totals=587230, total length=1567727587
+Regrouping nodes...
+Saving results...
+Tprefix=9 ms, Tsufix=16043 ms, Tmerge=10816 ms, Tsave=7986 ms ==> g:\data\fragme
+nts\xmark600_16_4M_20171126\xm4a.dps\
+PS D:\data>                                                                     

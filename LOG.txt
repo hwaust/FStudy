@@ -51,6 +51,20 @@ for (int i = 0; i < rs.length; i++) {
    65   +   59    =
 	     124
 
+xmark600_16_4M on matsu-lab05
+
+xm1.org   4.0 GiB	 137575	   76712	   68636	   69039	   68390  3123s
+xm3.org  68.8 MiB    3323	    3473	    2319	    2285	    2273    63s
+xm4.org  53.0 MiB    2748	    2768	    1848	    1833	    1841   101s
+xm5.org  74.3 MiB 	 3573	    3760	    2440	    2462	    2437    75s
+xm6.org 128.0 MiB	   6175	    4205	    4198	    4189	    4197    71s
+
+
+xm1.org   4.0 GiB	    68s  3123s
+xm3.org  68.8 MiB    2.3s    63s
+xm4.org  53.0 MiB    1.8s   101s
+xm5.org  74.3 MiB 	 2.4s    75s
+xm6.org 128.0 MiB	   4.2s    71s
 
 
 Processing Server list: localhost.mfrag0; localhost.mfrag1; localhost.mfrag2; localhost.mfrag3;
