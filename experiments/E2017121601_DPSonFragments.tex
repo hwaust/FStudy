@@ -1,0 +1,178 @@
+
+
+\section{E2017120501: Data Partitioning on Fragmented XML Data}
+
+\subsection{XQuery Expressions}
+
+Two XPath expressions XQ1 and XQ2 for prefix and suffix queries 
+are listed in Section~\ref{app:xqueries}.
+
+
+\subsection{Settings}
+
+The settings of this experiments are listed below.
+
+\begin{tabular}{l|l}
+    \hline
+    \textbf{Item} & \textbf{Description }\\
+    \hline
+    XML Data & xmark600.xml \\
+    \hline
+    Fragmentation & maxisze=4M, Ns=16\\
+    \hline
+	BaseX Server & a temporary database namely `xmark600\_16\_4M\_tmp'\\
+	& with main memory mode\\ 
+	\hline
+	Computers&  master=HaoDesk, workers: matsu-lab00 -- matsu-lab15\\
+	\hline
+	\# of partions(P) &  1, 2, 3, 4, 6, 12\\
+    \hline
+\end{tabular}	
+
+
+\subsection{Confirming Correctness}
+
+The number of hit nodes, the order of hit nodes and results size of
+the final output of queries have been checked and confirmed to be correct. 
+All the successfully evaluated queries 
+have the same number of hit nodes in original order. Some may be 
+different in size, such as xm3a.dps. Its original result size
+was 922,270,281, but in this experiment, it is 883,253,777.
+This dramatical difference is caused by line-break. The previous 
+experiments were done on Windows, while the current on Linux. 
+Since BaseX using `$\backslash$r$\backslash$n' on Windows, while
+ `$\backslash$n' on Linux for line-break, there is one byte 
+difference for each new line. We also found that the query has 
+6,502,751 hit nodes and  there are six lines in every hit node, 
+such as:\\
+\verb|<bidder>|\\
+\verb|  <date>08/04/1999</date>|\\
+\verb|  <time>11:15:36</time>|\\
+\verb|  <personref person="person17793"/>|\\
+\verb|  <increase>7.50</increase>|\\
+\verb|</bidder>|\\
+
+We then have 883,253,777 + 6,502,751 * 6 - 922,270,281 = 2. These two bytes
+are extra '$\backslash$n'. So the sizes are the same.
+
+
+
+\subsection{Discussion on Queries}
+
+
+\paragraph{xm1.dps}
+
+Since the results of xm1.dps are larger than the memory of 
+HaoDesk. This query was not evaluated. This is a design 
+choice about how to process the results. Based the previous 
+evaluation, one possible way is to stored the unordered intermediate 
+results in files and then concatenate these files.
+
+\paragraph{xm2.dps}
+
+Not tested for two reasons. Firstly, the prefix query of xm2.dps (as well
+as xm4.dps) cannot be processed by the current XQuery expression XQ1
+(will be modifed and tested soon). Secondly, there is no results as 
+shown in experiment E20170401. One proposal is to  make a minimal 
+change to the query, such as change \texttt{category52} to 
+ \texttt{category324329}, which exists in XMark600.
+
+
+
+\paragraph{xm3.dps}
+
+The results of xm3.dps are shown in Table~\ref{tab:xm3dps}.
+(xm3.org = 63.32s) 
+
+\begin{table}
+	\centering
+	\label{tab:xm3dps}
+	\caption{Execution time for xm3.dps}
+	\begin{tabular}{c|c|c|c|c|c|c|c}
+		\hline
+		query    &  P=1  &  P=2   &  P=3  &  P=4 &   P=6 &    P=8 & P=12   \\
+		\hline
+		prefix    &   \multicolumn{6}{|c}{$\approx$ 0.3s}    \\
+		\hline
+		suffix    & 113.2s&  58.5s &  30.1s&  20.2s & 15.8s&   13.5s & 11.3s \\ 
+		\hline
+		merge     &   \multicolumn{6}{|c}{$\approx$ 6s}    \\
+		\hline
+	\end{tabular} 
+\end{table} 
+
+\paragraph{xm4.dps}
+Not tested for the same reason as the first one of xm2.dps.
+
+\paragraph{xm5.dps}
+
+The query xm5a.dps was the targe query in the previous design. 
+However, due to the insufficient number of nodes in the results of prefix 
+query to be allocated to 16 
+computers\footnote{
+Detailed explanation: An error message 
+``database 'xmark600\_16\_4M\_tmp' has no node with pre value 5.'' was
+encountered when executing a suffix query on an intermediate database.
+The database had the content of  \texttt{<root><part> ...</part></root>} , 
+where there is only one \texttt{part} node. 
+In a suffix query when P = 2, it is then to process ``pre value 5'' in XQ2, 
+which refers to the second \texttt{part} node. However, since there is 
+no second \texttt{part} node, the error occurred.
+}
+, I changed it to xm5b.dps (xm5c.dps was also evaluated, but 
+it took 1480s (P=4), which is too long and thus ignored). 
+The results of xm5b.dps is listed in Table~\ref{tab:xm5b.dps}
+(xm5.dps = 75.05s). 
+
+\begin{table}
+	\centering
+	\label{tab:xm5b.dps}
+	\caption{Execution time for xm5b.dps}
+	\begin{tabular}{c|c|c|c|c|c|c|c}
+		\hline
+		query    &  P=1  &  P=2   &  P=3  &  P=4 &   P=6 &    P=8 & P=12   \\
+		\hline
+		prefix    &   \multicolumn{6}{|c}{$\approx$ 0.3s}    \\
+		\hline
+		suffix    & 243s & 67.5s &  48.9s & 37.8s & 33.4s&   31.8s &   28.2s \\ 
+		\hline
+		merge     &   \multicolumn{6}{|c}{$\approx$ 10s}    \\
+		\hline
+	\end{tabular} 
+\end{table} 
+
+
+
+\paragraph{xm6.dps}
+
+Failed to evaluate them with data partitioning. The reason is 
+the same as xm5a.dps (both \texttt{/site/regions} and 
+\texttt{/site/regions/*[...]/item} were tested).
+
+
+
+ 
+%\subsection{Conclusion}
+%
+%In general there are three problems or design choices:
+%
+%\begin{itemize}
+%\item xm1.dps returns larger results than memory.
+%\item some queries cannot be successfully evaluated.
+%\item some successfully evaluated queries are too slow in performance.
+%\end{itemize}
+
+
+\subsection{Efficiency of Parsing Intermediate Results of Suffix Query}
+A important method in the implemenation that affects the whole performance is 
+\texttt{basex.PreValueReceiver.process(InputStream input)} used 
+to parse the received results of suffix query, (i.e. PRE value + 
+content). It takes the results of suffix query and returns an 
+QueryResultsPre instance with a list of PRE values and a list of 
+string content (of the same size). A simple experiment were done to evaluate 
+the parsing speed. In the experiment, it took 465 ms to parse 
+52,757 KiB data with 704,430 nodes, i.e. it can process 100 MiB 
+data per second, which basically reach the maximum network 
+speed and thus should be sufficient for not being a bottleneck.
+
+

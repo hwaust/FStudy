@@ -1,35 +1,135 @@
-\section{XPath Queries}
+\section{Queries}
 
-\subsection{For XMark Dataset}
+\subsection{XPath Quereis}
 
-The queries for XMark datasets are listed in Table~\ref{table:xmarkqueries}.
+The original XPath queries for XMark datasets are listed in Table~\ref{table:xmarkqueries}.
+The data partitioning XPath queries of Table~\ref{table:xmarkqueries} 
+is listed in Table~\ref{table:dpsqueries}.
 
 \begin{table}[t]
-		\caption{Original XPath queries For XMark datasets. }
+	\caption{Original XPath queries on XMark datasets. }
 	\label{table:xmarkqueries}
 	\centering
+	\footnotesize
 	\begin{tabular}{c|l}
 	\hline\hline
 	 key      &  query\\
 	 \hline\hline
 	  xm1.org &  \verb|/site//*[name(.)="emailaddress" or| \\
-	          & \verb|name(.)="annotation" or name(.)="description"]| \\
+	 & \verb|name(.)="annotation" or name(.)="description"]| \\
 	  \hline
-	  xm2.org & /site//incategory[./@category="category52"]/parent::item/@id \\
+	  xm2.org & \verb|/site//incategory[./@category="category52"]/parent::item/@id |\\
 	  \hline
-	  xm3.org & /site//open\_auction/bidder[last()] \\
+	  xm3.org & \verb|/site//open\_auction/bidder[last()] |\\
 	  \hline
-	  xm4.org & /site/regions/*/item[./location="United States" and ./quantity $>$ \\
-	          &  and ./payment="Creditcard" and ./description and ./name] \\
+	  xm4.org & \verb|/site/regions/*/item[./location="United States" and ./quantity|\\
+	          &  \verb| > and ./payment="Creditcard" and ./description and ./name] |\\
 	  \hline
-	  xm5.org & /site/open\_auctions/open\_auction/bidder/increase\\
+	  xm5.org & \verb|/site/open\_auctions/open\_auction/bidder/increase|\\
 	  \hline
-	  xm6.org & /site/regions/*[name(.)="africa" or \\   
-	          & name(.)="asia"]/item/description/parlist/listitem\\
+	  xm6.org & \verb|/site/regions/*[name(.)="africa" or |\\   
+	          & \verb|name(.)="asia"]/item/description/parlist/listitem|\\
  	 \hline\hline   
 	\end{tabular}
 \end{table}
 
  
+ 
+ \begin{table}[t]
+ 	\caption{Data partitioning XPath Queries on XMark datasets. }
+ 	\label{table:dpsqueries}
+ 	\footnotesize
+ 	\centering
+ 	\begin{tabular}{c|l}
+ 		\hline\hline
+ 		key      &  query\\ 
+ 		\hline\hline
+ 		xm1.dps & pre = \verb|/site//*|, suf = \verb|[name(.)="emailaddress" or| \\
+ 		        & \verb|name(.)="annotation" or name(.)="description"]| \\
+ 		\hline
+ 		xm2.dps & pre = \verb| db:attribute("{db}", "category52")|, \\
+        		& suf = \verb|/parent::incategory/parent::item/@id| \\
+  		\hline
+ 		xm3.dps & pre = \verb|/site/open_auctions/open_auction|,\\
+ 		&  suf = \verb|/bidder[last()]| \\ 
+ 		\hline
+ 		xm4.dps & pre = \verb|db:text("{db}", "Creditcard")| \\
+ 		& suf =  \verb|/parent::*:item[parent::*/parent::*:regions| \\
+ 		& \verb|/parent::*:site/parent::document-node()]| \\
+ 		& \verb|[(*:location = "United States")][0.0 < *:quantity]| \\
+ 		& \verb|[*:description][*:name]|\\
+ 		\hline
+ 		xm5a.dps & pre  = \verb|/site/open_auctions|,\\
+ 		& suf =  \verb|/open_auction/bidder/increase|\\
+ 		xm5b.dps & pre  = \verb|/site/open_auctions/open_auction|,\\
+ 		& suf =  \verb|/bidder/increase|\\
+  		xm5c.dps & pre  = \verb|/site/open_auctions/open_auction/bidder|,\\
+        & suf =  \verb|/increase|\\
+ 		\hline
+ 		xm6.dps & pre  = \verb|/site/regions|,\\
+        & suf =  \verb|/self::*[name(.)="africa" or name(.)="asia"]/item|\\
+        & \verb| /description/parlist/listitem|\\
+ 		\hline\hline   
+ 	\end{tabular}
+ \end{table}
+ 
+
+ 
+\subsection{XQuery Expressions}
+\label{app:xqueries}
+
+The two XQuery expressions are used for processing prefix query 
+and suffix query for data partitioning strategy shown in Table~\ref{tab:xquery1}
+and Table~\ref{tab:xquery2} respectively.
+
+\begin{table}
+\centering
+\label{tab:xquery1}
+\caption{XQuery Expression for XQ1 prefix part}
+  \footnotesize
+\begin{lstlisting}[language=java,frame=single]
+// XQ12: for prefix query 
+let $d := array { db:open('{db}'){prefix} ! 
+          db:node-pre(.) } return
+for $i in 0 to {P} - 1 return
+let $q := array:size($d) idiv {P} return
+let $r := array:size($d) mod {P} return
+let $part_length := if ($i < $r) then $q + 1
+else $q return
+let $part_begin  := if ($i <= $r) then ($q + 1) * $i
+else $q * $i + $r return
+insert node element part {
+array:subarray($d, $part_begin + 1, $part_length)
+} as last into db:open('{tmpdb}')/root
+\end{lstlisting}
+\end{table}
+ 
+
+\begin{table}
+	\centering
+	\label{tab:xquery2}
+	\caption{XQuery Expression XQ2 for suffix part}
+
+  \footnotesize
+\begin{lstlisting}[language=java,frame=single]
+// XQ2: for suffix query 
+declare option output:method '$mode';
+declare option output:item-separator '[';
+
+for $pre in db:open('{tmpdb}')/root return
+let $node := db:open('{db}'){suffix}
+return (db:node-pre($node), $node)
+
+let $part_pre := {p}*2 + 1 return
+for $pre in ft:tokenize(db:open-pre('{tmpdb}', $part_pre)) return
+for $node in db:open-pre('{db}', xs:integer($pre)){suffix})
+return (db:node-pre($node), $node) 
+\end{lstlisting}
+\end{table}
+
+% xm4c.dps: db:text("{db}", "Creditcard")/parent::*:payment
+% xm4c.dps: /parent::*:item[parent::*/parent::*:regions/parent::*:
+% site/parent::document-node()][(*:location = "United States")]
+% [0.0 < *:quantity][*:description][*:name] 
 
  

@@ -7,16 +7,9 @@
 java -Xmx4g -Xms2g -cp bxstudy.jar tests.IntPreEfficiencyTest
 
 
-ryq948
+s8y76j
 
-D:\data>java -Xmx4g -Xms2g -cp bxstudy.jar tests.IntPreEfficiencyTest
-....................Time taken: 465 ms. QR.PRES.Size=704430, Results.length=52757 KiB.
-
-D:\data>java -Xmx4g -Xms2g -cp bxstudy.jar tests.IntPreEfficiencyTest
-....................Time taken: 461 ms. QR.PRES.Size=704430, Results.length=52757 KiB.
-
-D:\data>java -Xmx4g -Xms2g -cp bxstudy.jar tests.IntPreEfficiencyTest
-....................Time taken: 467 ms. QR.PRES.Size=704430, Results.length=52757 KiB.
+* check the slowest one.
 
 
 QueryResultPre rd = (QueryResultPre) pes[i].sr;
@@ -29,11 +22,6 @@ QueryResultPre rd = (QueryResultPre) pes[i].sr;
 			rd.results.get(pos).add(rd.values.get(j));
 		}
             input   output
-xm1	55	M
-xm3	6.5	M  6502751 = 6502751
-xm4	0.6	M
-xm5	36	M
-xm6	1.3	M
 
 
 // for debugging.
@@ -51,176 +39,27 @@ for (int i = 0; i < rs.length; i++) {
    65   +   59    =
 	     124
 
+2017-12-16
 xmark600_16_4M on matsu-lab05
+------------------------------ Results ------------------------------------
+|  query  |  results  |                 Evaluation                        |
+|         |   size    |  run 1 | run 2|  run 3 | run 4 |  run 5| Original |
+---------------------------------------------------------------------------
+| xm1.org |   4.0 GiB | 137575 | 76712 | 68636 | 69039 | 68390 |   3123s  |
+| xm3.org |  68.8 MiB |   3323 |  3473 |  2319 |  2285 |  2273 |     63s  |
+| xm4.org |  53.0 MiB |   2748 |  2768 |  1848 |  1833 |  1841 |    101s  |
+| xm5.org |  74.3 MiB |   3573 |  3760 |  2440 |  2462 |  2437 |     75s  |
+| xm6.org | 128.0 MiB |   6175 |  4205 |  4198 |  4189 |  4197 |     71s  |
+--------------------------------------------------------------------------
 
-xm1.org   4.0 GiB	 137575	   76712	   68636	   69039	   68390  3123s
-xm3.org  68.8 MiB    3323	    3473	    2319	    2285	    2273    63s
-xm4.org  53.0 MiB    2748	    2768	    1848	    1833	    1841   101s
-xm5.org  74.3 MiB 	 3573	    3760	    2440	    2462	    2437    75s
-xm6.org 128.0 MiB	   6175	    4205	    4198	    4189	    4197    71s
+---------------------------------------------
+|  query  |   size    | avg(3-5) | Original |
+---------------------------------------------
+| xm1.org |   4.0 GiB |  68s     |  3123s   |
+| xm3.org |  68.8 MiB | 2.3s     |    63s   |
+| xm4.org |  53.0 MiB | 1.8s     |   101s   |
+| xm5.org |  74.3 MiB | 2.4s     |    75s   |
+| xm6.org | 128.0 MiB | 4.2s     |    71s   |
+---------------------------------------------
 
-
-xm1.org   4.0 GiB	    68s  3123s
-xm3.org  68.8 MiB    2.3s    63s
-xm4.org  53.0 MiB    1.8s   101s
-xm5.org  74.3 MiB 	 2.4s    75s
-xm6.org 128.0 MiB	   4.2s    71s
-
-
-Processing Server list: localhost.mfrag0; localhost.mfrag1; localhost.mfrag2; localhost.mfrag3;
-Query Key: xm3a.dps
-Input folder: D:\data\fragments\xmark1_4_20K_20171126
-Ns=4, P=4.
-Prepareing temporary databases...
-Executing prefix queries...
-Saving temporary databases...
-Prefix query done.
-Saving output of P1
-Evaluating suffix queries...
-Evaluation of Suffix queries done.
-Starting merging...
-Tree: 0, Partition: 0
-pre=4689, value=<date>06/14/2001</date>
-pre=4727, value=<date>01/09/2000</date>
-pre=4815, value=<date>06/08/2001</date>
-pre=4855, value=<date>10/22/1998</date>
-pre=4958, value=<date>10/08/1998</date>
-pre=5024, value=<date>05/15/2001</date>
-pre=5110, value=<date>08/27/1998</date>
-pre=5290, value=<date>05/03/2000</date>
-pre=5360, value=<date>08/04/2000</date>
-pre=5530, value=<date>06/11/1999</date>
-Tree: 0, Partition: 1
-pre=5749, value=<date>11/26/2001</date>
-pre=5840, value=<date>12/09/2001</date>
-pre=5884, value=<date>06/16/2001</date>
-pre=5943, value=<date>11/15/1998</date>
-pre=6055, value=<date>12/15/2000</date>
-pre=6121, value=<date>08/02/1999</date>
-pre=6160, value=<date>06/03/2000</date>
-pre=6313, value=<date>05/12/2001</date>
-pre=6412, value=<date>07/23/1999</date>
-Tree: 0, Partition: 2
-pre=6489, value=<date>12/09/2000</date>
-pre=6586, value=<date>06/19/2000</date>
-pre=6691, value=<date>04/20/1998</date>
-pre=6756, value=<date>09/08/1998</date>
-pre=6828, value=<date>10/14/1998</date>
-pre=6873, value=<date>08/22/1999</date>
-pre=6943, value=<date>04/25/1998</date>
-pre=6983, value=<date>02/12/1999</date>
-pre=7040, value=<date>06/27/2001</date>
-pre=7104, value=<date>01/06/2001</date>
-pre=7206, value=<date>11/12/2000</date>
-Tree: 0, Partition: 3
-pre=7253, value=<date>05/19/1998</date>
-pre=7352, value=<date>06/05/1999</date>
-pre=7471, value=<date>09/15/1999</date>
-pre=7514, value=<date>10/11/1998</date>
-pre=7605, value=<date>04/05/1999</date>
-pre=7669, value=<date>03/12/2001</date>
-pre=8065, value=<date>01/09/1998</date>
-pre=8427, value=<date>05/16/1998</date>
-pre=8789, value=<date>05/22/1999</date>
-pre=9151, value=<date>05/10/1999</date>
-pre=9513, value=<date>04/01/2001</date>
-Tree: 1, Partition: 0
-pre=5641, value=<date>12/27/1999</date>
-pre=5692, value=<date>04/25/2001</date>
-pre=5733, value=<date>05/03/1998</date>
-pre=5845, value=<date>03/24/2000</date>
-pre=5964, value=<date>02/24/1998</date>
-pre=6059, value=<date>10/20/2000</date>
-pre=6118, value=<date>03/01/1999</date>
-Tree: 1, Partition: 1
-pre=6266, value=<date>04/15/1999</date>
-pre=6497, value=<date>12/27/1999</date>
-pre=6673, value=<date>04/19/1998</date>
-pre=6819, value=<date>11/08/2001</date>
-pre=6923, value=<date>10/16/1999</date>
-pre=6966, value=<date>02/12/1999</date>
-pre=7069, value=<date>03/08/1998</date>
-Tree: 1, Partition: 2
-pre=7176, value=<date>08/25/2000</date>
-pre=7278, value=<date>12/05/2000</date>
-pre=7349, value=<date>07/26/1999</date>
-pre=7465, value=<date>07/02/1999</date>
-pre=7504, value=<date>09/04/2000</date>
-pre=7891, value=<date>03/16/1999</date>
-Tree: 1, Partition: 3
-pre=8253, value=<date>07/23/1999</date>
-pre=8615, value=<date>02/19/1999</date>
-pre=8977, value=<date>11/11/1999</date>
-pre=9204, value=<date>05/16/2000</date>
-Tree: 2, Partition: 0
-pre=3656, value=<date>09/21/2001</date>
-pre=3744, value=<date>07/03/2000</date>
-pre=3802, value=<date>06/08/2001</date>
-pre=3882, value=<date>07/16/2001</date>
-pre=4059, value=<date>12/23/1998</date>
-pre=4187, value=<date>04/02/1998</date>
-pre=4235, value=<date>01/22/2000</date>
-pre=4367, value=<date>06/25/1998</date>
-pre=4457, value=<date>02/11/2000</date>
-Tree: 2, Partition: 1
-pre=4562, value=<date>02/16/1999</date>
-pre=4621, value=<date>10/26/1998</date>
-pre=4726, value=<date>09/17/1998</date>
-pre=4888, value=<date>04/20/1998</date>
-pre=4980, value=<date>01/07/2000</date>
-pre=5090, value=<date>09/16/1998</date>
-pre=5184, value=<date>06/04/2000</date>
-pre=5338, value=<date>03/01/1999</date>
-Tree: 2, Partition: 2
-pre=5464, value=<date>05/17/2001</date>
-pre=5640, value=<date>01/06/1998</date>
-pre=5787, value=<date>03/22/2001</date>
-pre=5836, value=<date>10/03/2000</date>
-pre=5881, value=<date>10/16/1999</date>
-pre=5946, value=<date>01/14/1998</date>
-pre=6166, value=<date>11/26/2001</date>
-pre=6231, value=<date>12/28/2000</date>
-pre=6405, value=<date>11/13/2001</date>
-pre=6489, value=<date>03/21/2001</date>
-pre=6545, value=<date>08/24/2000</date>
-Tree: 2, Partition: 3
-pre=6660, value=<date>06/25/2001</date>
-pre=6840, value=<date>03/05/2000</date>
-pre=6876, value=<date>05/14/1999</date>
-pre=7323, value=<date>11/16/2001</date>
-pre=7685, value=<date>08/21/1999</date>
-pre=8047, value=<date>08/23/2001</date>
-Tree: 3, Partition: 0
-pre=4242, value=<date>09/07/1999</date>
-pre=4342, value=<date>07/28/2001</date>
-pre=4423, value=<date>05/25/2000</date>
-pre=4675, value=<date>04/06/1999</date>
-pre=4727, value=<date>09/03/2000</date>
-pre=5101, value=<date>03/25/1999</date>
-Tree: 3, Partition: 1
-pre=5269, value=<date>06/09/2001</date>
-pre=5347, value=<date>06/21/1998</date>
-pre=5498, value=<date>08/01/1998</date>
-pre=5577, value=<date>12/02/2001</date>
-pre=5686, value=<date>01/24/2000</date>
-pre=5750, value=<date>01/22/2000</date>
-pre=5870, value=<date>03/20/1998</date>
-Tree: 3, Partition: 2
-pre=6011, value=<date>03/14/2001</date>
-pre=6097, value=<date>09/14/1999</date>
-pre=6283, value=<date>04/17/2000</date>
-pre=6397, value=<date>01/28/2000</date>
-pre=6600, value=<date>08/20/2000</date>
-pre=6987, value=<date>06/08/2001</date>
-pre=7349, value=<date>09/08/2001</date>
-Tree: 3, Partition: 3
-pre=7711, value=<date>03/27/1999</date>
-pre=8073, value=<date>12/02/2001</date>
-pre=8435, value=<date>10/01/1998</date>
-pre=8797, value=<date>04/09/1999</date>
-pre=9938, value=<date>05/16/2000</date>
-Regrouping nodes...
-Saving results...
-Completed. Tprefix=19 ms; Tsufix=44 ms; Tmerge=2 ms, Tsave=1 ms.
-Results are saved to: D:\data\fragments\xmark1_4_20K_20171126\xm3a.dps\
 

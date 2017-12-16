@@ -25,7 +25,6 @@ let $part_pre := {p}*2 + 1 return
 for $pre in ft:tokenize(db:open-pre('{tmpdb}', $part_pre)) return
   for $node in db:open-pre('{db}', xs:integer($pre)){suffix})
     return (db:node-pre($node), $node)
-
 ------------------------------------------------------------------
 
 
