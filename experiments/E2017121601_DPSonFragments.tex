@@ -6,8 +6,11 @@ This report is about the experiments to evaluate the performance
 of applying data partitioning strategy on fragmented XML data. 
 
 
-\subsection{A Brief Introduction}
+\subsection{A Brief Introduction to Implementation}
 
+The implementation can now process some of the queries on fragmented 
+XML data with data partitioning in a distributed-memory environment.
+There are still problems existed to be solved.
 
 
 \subsection{Settings}
@@ -22,8 +25,8 @@ used in the experiments listed in \ref{app:xqueries}.
 
 
 \paragraph{Software}
-The input XML data set was xmark600(see \ref{app:xqueries}), which 
-was fragmented into 16 fragments with maxisze=4M.
+The input XML data set was xmark600(see \ref{app:xqueries}), which was 
+fragmented into 16 fragments with maxisze=4M.
 On each worker, there ran a BaseX server (Verion: 8.6.7). 
 For each fragment, a BaseX database instance, namely `xmark600\_16\_4M\'
 was created in main memory on each worker.
@@ -56,47 +59,56 @@ difference for each new line. We also found that the query has
 such as:\\
 \verb|<bidder>|\\
 \verb|  <date>08/04/1999</date>|\\
-
 \verb|  <time>11:15:36</time>|\\
 \verb|  <personref person="person17793"/>|\\
 \verb|  <increase>7.50</increase>|\\
 \verb|</bidder>|\\
 
-We then have 883,253,777 + 6,502,751 * 6 - 922,270,281 = 2. These two bytes
-are extra '$\backslash$n'. So the sizes are the same.
+We then have 883,253,777 + 6,502,751 * 6 - 922,270,281 = 2. These two bytes are
+extra '$\backslash$n'. So the sizes are the same.
 
 
 
 \subsection{Discussion on Queries}
 
+The execution time of queries and related information are listed in
+Table~\ref{tab:exetime}. 
 
-\paragraph{xm1.dps}
+\subsection{Timing}
 
-Since the results of xm1.dps are larger than the memory of 
-HaoDesk. This query was not evaluated. This is a design 
-choice about how to process the results. Based the previous 
-evaluation, one possible way is to stored the unordered intermediate 
-results in files and then concatenate these files.
+There were three period of times recorded, T$_p$, T$_s$ and T$_m$. T$_p$ is the
+time for executing prefix query. It starts from sending  prefix query to all
+workers and ends with the complete of prefix query on all workers. 
+T$_s$ is the time for executing suffix query, starting from sending till all 
+workers done. T$_m$ is the time for merging results. 
+
+
+\paragraph{xm1.dps}.
+
+Since the result of xm1.dps is larger than the memory of HaoDesk, this query was
+not evaluated. This is a design  choice about how to process the results. Based
+the previous evaluation, one possible way is to stored the unordered
+intermediate results in files and then concatenate these files.
 
 \paragraph{xm2.dps}
 
-Not tested for two reasons. Firstly, the prefix query of xm2.dps (as well
-as xm4.dps) cannot be processed by the current XQuery expression XQ1
-(will be modifed and tested soon). Secondly, there is no results as 
-shown in experiment E20170401. One proposal is to  make a minimal 
-change to the query, such as change \texttt{category52} to 
- \texttt{category324329}, which exists in XMark600.
-
-
+This query was not tested for two reasons. Firstly, the prefix query of xm2.dps
+(as well as xm4.dps) cannot be processed by the current XQuery expression XQ1
+(will be modifed and tested soon). Secondly, there query has no hit node over
+XMark600 as explained in experiment E20170401. To keep using this query, one
+proposal is to make a minimal change to the attribute part of the query, such as
+changing \texttt{category52} to \texttt{category324329}, which exists in
+XMark600.
 
 
 \paragraph{xm3.dps}
 
-The results of xm3.dps are shown in Table~\ref{tab:xm3dps}.
-(xm3.org = 63.32s) 
+
+
 
 
 \paragraph{xm4.dps}
+
 Not tested for the same reason as the first one of xm2.dps.
 
 \paragraph{xm5.dps}
@@ -122,43 +134,42 @@ The results of xm5b.dps is listed in Table~\ref{tab:xm5b.dps}
 
 \paragraph{xm6.dps}
 
-Failed to evaluate them with data partitioning. The reason is 
+Failed to evaluate it with data partitioning. The reason is 
 the same as xm5a.dps (both \texttt{/site/regions} and 
 \texttt{/site/regions/*[...]/item} were tested).
 
-
-\begin{table}[]
-	\centering
-	\caption{Execution time with related information}
-	\label{tab:exetime}
-	\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|}
-		\hline
-		\multirow{2}{*}{Key} & \multirow{2}{*}{\begin{tabular}[c]{@{}c@{}}Prefix\\ (s)\end{tabular}} & \multicolumn{5}{c|}{Suffix (s)} & \multirow{2}{*}{\begin{tabular}[c]{@{}c@{}}Merge \\ (s)\end{tabular}} & \multirow{2}{*}{\begin{tabular}[c]{@{}c@{}}Original\\ (s)\end{tabular}} & \multicolumn{2}{c|}{Results Size} \\ \cline{3-7} \cline{10-11} 
-		&                                                                       & P=1 & P=2  & P=3  & P=4  & P=8  &                                                                       &                                                                         & hit nodes(M)       & in MiB       \\ \hline
-		xm1.dps              &                                                                       &     &      &      &      &      &                                                                       & 3122                                                                    & 5.5                & 57267        \\ \hline
-		xm2.dps              &                                                                       &     &      &      &      &      &                                                                       & 0.01                                                                    & 0                  & 0            \\ \hline
-		xm3.dps              & 0.3                                                                   & 113 & 58.5 & 30.1 & 20.2 & 13.5 & 6                                                                     & 63.3                                                                    & 6.5                & 880          \\ \hline
-		xm4.dps              &                                                                       &     &      &      &      &      &                                                                       & 101                                                                     & 0.6                & 1511         \\ \hline
-		xm5.dps              & 0.3                                                                   & 243 & 67.5 & 48.9 & 37.8 & 31.8 & 10                                                                    & 74.9                                                                    & 35.9               & 944          \\ \hline
-		xm6.dps              &                                                                       &     &      &      &      &      &                                                                       & 70                                                                      & 1.3                & 1289         \\ \hline
-	\end{tabular}
-\end{table}
-
+\input{result}
 
  
-%\subsection{Conclusion}
-%
-%In general there are three problems or design choices:
-%
-%\begin{itemize}
-%\item xm1.dps returns larger results than memory.
-%\item some queries cannot be successfully evaluated.
-%\item some successfully evaluated queries are too slow in performance.
-%\end{itemize}
+\subsection{Problems}
+
+In general there are several problems (or design choices) listed below:
+
+
+\paragraph{Memory size is limited.} 
+The result of xm1.dps is nearly 60 GB, which is larger than the memory 
+of HaoDesk (32 GB). One proposal is to keep the results on disk. 
+
+\paragraph{Evaluation cannot finish.} 
+
+The implementation for some reason cannot finish the evaluation. It 
+often went dead in the middle of evaluating suffix queries. For example, 
+letting P=4, there are 64 suffix queries processed in parallel. 
+The evaluation stays irresponsive after 50 or more suffix queries have 
+been evaluated. The reason has not been figured out yet. 
+
+
+\paragraph{Low Performance} 
+The evaluations for some suffix were very low in performance.  
+There are two examples to show that.
+Firstly,  
+
+
 
 
 \subsection{Efficiency of Parsing Intermediate Results of Suffix Query}
-A important method in the implemenation that affects the whole performance is 
+
+A important method in the implementation that affects the whole performance is 
 \texttt{basex.PreValueReceiver.process(InputStream input)} used 
 to parse the received results of suffix query, (i.e. PRE value + 
 content). It takes the results of suffix query and returns an 
