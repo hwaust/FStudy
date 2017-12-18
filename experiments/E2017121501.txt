@@ -1,7 +1,7 @@
 Prefix query done.
 Saving output of P1
 Exception in thread "main" java.io.IOException:
-Query:
+Query:x
 declare option output:method 'basex'; declare option output:item-separator '[';
 for $pre in ft:tokenize(db:open-pre('xmark600_16_4M_tmp', 2*2 + 1)) return for $
 node in db:open-pre('xmark600_16_4M', xs:integer($pre))/description/parlist/list
