@@ -9,7 +9,33 @@ java -Xmx4g -Xms2g -cp bxstudy.jar tests.IntPreEfficiencyTest
 
 s8y76j
 
+2017-12-17
 * check the slowest one.
+2017-12-18
+- Done
+- also checked the log files.
+
+-> Login to: Matsu05
+-> Open a singlton BaseX instance: java -cp BaseX867.jar org.basex.BaseX
+-> List all databases (command: list)
+> list
+Name           Resources  Size     Input Path
+--------------------------------------------------------------------------------------
+xmark1_16_20K  1          7205443  /home/matsu-lab/hao/data/xmark1_16_20K_20171126.xml
+1 database(s).
+
+-> try to open xmark600_16_4M, failed.
+> open xmark600_16_4M
+Database 'xmark600_16_4M' was not found.
+
+-> try to execute query on xmark600_16_4M, failed.
+> xquery count(db:open('xmark600_16_4M')//keyword)
+Stopped at ., 1/14:
+[bxerr:BXDB0002] Database 'xmark600_16_4M' was not found.
+
+
+open xmark600_16_4M
+java -Xmx8g -Xms6g -cp /home/matsu-lab/hao/BaseX867.jar org.basex.BaseXServer -c "set mainmem true; create db xmark600_16_4M data/xmark600_16_4M_20171126.xml"
 
 
 QueryResultPre rd = (QueryResultPre) pes[i].sr;
