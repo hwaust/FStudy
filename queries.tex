@@ -81,6 +81,8 @@ is listed in Table~\ref{table:dpsqueries}.
 The two XQuery expressions are used for processing prefix query 
 and suffix query for data partitioning strategy shown in Table~\ref{tab:xquery1}
 and Table~\ref{tab:xquery2} respectively.
+Note that \verb|{eval_prefix}| will be first replaced by \verb|{prefix}| or
+\verb|db:open('{db}'){prefix}| depending on whether the query is optimized. 
 
 \begin{table}
 \centering
@@ -89,7 +91,7 @@ and Table~\ref{tab:xquery2} respectively.
   \footnotesize
 \begin{lstlisting}[language=java,frame=single]
 // XQ12: for prefix query 
-let $d := array { db:open('{db}'){prefix} ! 
+let $d := array { {eval_prefix} ! 
           db:node-pre(.) } return
 for $i in 0 to {P} - 1 return
 let $q := array:size($d) idiv {P} return
