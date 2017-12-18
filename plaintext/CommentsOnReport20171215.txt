@@ -1,0 +1,163 @@
+
+
+Is is updated? It seems just reformatted in PDF and not revised. An
+obvious typo ("targe") remains, which suggests that it did not pass a
+mechanical spell-checking.
+
+At least, it is not self-contained at all. For example, why did you
+not describe even the experimental environment fully? It means that
+you make us find the HaoDesk spec for previous emails and the
+matsu-lab cluster spec for wiki. This is simply laziness incurring
+inefficiency and a wrong attitude to writing, as we have been saying
+repeatedly.
+
+>>>>> If you use the performance of the original querying on HaoDesk for the
+>>>>> baseline, you ought to write it (again) and compare "too slow" results
+>>>>> with it quantitatively.
+
+Did you compare the results with the baseline? What is the description
+"(xm3.org = 63.32s)"? We did not write the ADBIS submission in such a
+way. Is it readable as comparison? If you had followed the ADBIS
+submission, you would have written both in a table.
+
+Section 1.4 Discussion on Queries mentions data-partitioned queries
+and show the results of some of them. You, however, have not analyzed
+the results. Where did "problems" you said go to?
+
+The following are rather technical questions:
+
+  * Why did you scale P from 1 to 12?
+
+  * Is the speedup in scaling P (especially, P > 4) explicable?
+
+  * Is your implementation complete? If not, how much reliable are the
+    current experimental results? The current failures of query
+    evaluation seem just to indicate incompleteness.
+
+  * Can data-partitioning querying over disk-based instances on
+    HaoDesk make speedup? Although I asked you for a related question
+    before, you seem to stop considering and answering.
+
+  * Is the memory of the matsu-lab cluster enough for in-memory
+     querying over xmark600? In your previous estimation, it is not.
+.
+
+> The report is a progress report on the current experiment.  My
+> intention was to show you the current state of the experiment to
+> avoid going to a wrong direction. Otherwise, it will be too late if
+> some big mistakes were found when I finish and report it one or two
+> weeks later.
+
+Where is your intention described? No explanation.
+
+> I'm not sure of your definition of "updated".
+
+In this context, to be "updated" asked by Matsuzaki-sensei is to
+revise so as to follow our instructions and make the contents
+informative (and optionally, to add new results if available).
+
+> I am sorry that I sill failed to correct all the typos even if they
+> were found after checking.
+> [...]
+> Because I assume something, such as computers, are what you've
+> already known.
+
+So, the report did not obey even our instructions on the minimum
+requirements for communication: to eliminate (obvious) typos and
+errors and to make it self-contained.
+
+It is sufficient to doubt your "updated" to me.
+
+Addtionally, the report becomes worse in some sense.
+
+Part of what you said in the previous report in email is simply
+missing without explanation. For example,
+
+>>>>>>>>>> - xm5a.dps and xm5b.dps
+>>>>>>>>>>
+>>>>>>>>>>     Both of the queries can be evaluated and the results are
+>>>>>>>>>>  correct.
+>>>>>>>>>>     But the efficiency is a problems. Both query took longer time
+>>>>>>>>>>  than
+>>>>>>>>>>     the original (reported a couple of days ago).
+
+Where did this problem go to? Moreover, I do not have the things
+"reported a couple of days ago" by you. What is that?
+
+There is a lot of inconsistency, which makes us get lost.
+
+You thus have forgot our instruction of making explanation consistent.
+
+
+For example, we asked many times that "from which to which, do the times of
+prefix/suffix/merge... stand for?"
+
+You should have recorded more logs including the execution time of each part
+on each thread.  Why not showing us them?
+
+
+
+....
+I would like to make claims on your reply to Shigeyuki.
+
+> In general, this report has some problems for both itself and the
+> experiments. I will update them periodically with newly added contents.
+
+Why not trying to write "less-error" document from the beginning?
+There are several "good practices" for less-error writing,
+and have you tried to import them in your writing?
+
+You should pay more time for "update them periodically", which
+may waste both your and our time.
+
+>  > Is is updated?
+> I'm not sure of your definition of "updated". I did spend a couple of
+> hours on preparing this report and checked it several time to eliminate
+> mistakes. For the typo, I did do some mechanical spell-checking, but
+> I am sorry that I sill failed to correct all the typos even if they were
+> found after checking.
+
+I cannot understand why you "failed to correct all the typos even if they were
+found after checking".  If you use some tool correctly, it should be avoided.
+
+>  > At least, it is not self-contained at all. For example, why did you
+>  > not describe even the experimental environment fully?
+> Because I assume something, such as computers, are what you've
+> already known. For your convenience, I will list all materials,
+> including previous experiments, in a single document from now on
+> (I have actually done this).
+
+Did you expected that we really remember the information in mind or
+can restore it much faster than looking it in the same document?
+
+You should pay more attention for the arrangement of information,
+not just putting all the data just in a file.
+
+>  > Did you compare the results with the baseline? What is the description
+>  > "(xm3.org = 63.32s)"? We did not write the ADBIS submission in such a
+>  > way. Is it readable as comparison? If you had followed the ADBIS
+>  > submission, you would have written both in a table.
+> Because the experiments have not been done yet and I have not obtained
+> enough data. So I did not arrange the results in that way. I will
+> change the table according the format later.
+
+We cannot know your progress (not done) without explicit declaration.
+
+>  >    * Why did you scale P from 1 to 12?
+>  >    * Is the speedup in scaling P (especially, P > 4) explicable?
+> The two question are related. Since a worker equips with one CPU with 4
+> real cores, the speedup will be not interesting when P > 4. However,
+> to fully understand the performance, I then tested P=8 and P=12 for your
+> reference.
+
+Please let us know your consideration after the experiments with P > 4.
+Your report just showed the data, and you forced us to read and consider by ourselves.
+
+(skip two items)
+
+>  >    * Is the memory of the matsu-lab cluster enough for in-memory
+>  >       querying over xmark600? In your previous estimation, it is not.
+> Yes it is. This is because my previous estimation was imprecise.
+
+Then, show your improved estimation or concrete observation with numbers
+to convince us for in-memory querying.
