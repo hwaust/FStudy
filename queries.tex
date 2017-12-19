@@ -3,7 +3,7 @@
 \subsection{XPath Quereis}
 
 The original XPath queries for XMark datasets are listed in Table~\ref{table:xmarkqueries}.
-The data partitioning XPath queries of Table~\ref{table:xmarkqueries} 
+The data partitioning XPath queries of Table~\ref{table:xmarkqueries}
 is listed in Table~\ref{table:dpsqueries}.
 
 \begin{table}[t]
@@ -27,14 +27,14 @@ is listed in Table~\ref{table:dpsqueries}.
 	  \hline
 	  xm5.org & \verb|/site/open\_auctions/open\_auction/bidder/increase|\\
 	  \hline
-	  xm6.org & \verb|/site/regions/*[name(.)="africa" or |\\   
+	  xm6.org & \verb|/site/regions/*[name(.)="africa" or |\\
 	          & \verb|name(.)="asia"]/item/description/parlist/listitem|\\
- 	 \hline\hline   
+ 	 \hline\hline
 	\end{tabular}
 \end{table}
 
- 
- 
+
+
  \begin{table}[t]
  	\caption{Data partitioning XPath Queries on XMark datasets. }
  	\label{table:dpsqueries}
@@ -42,7 +42,7 @@ is listed in Table~\ref{table:dpsqueries}.
  	\centering
  	\begin{tabular}{c|l}
  		\hline\hline
- 		key      &  query\\ 
+ 		key      &  query\\
  		\hline\hline
  		xm1.dps & pre = \verb|/site//*|, suf = \verb|[name(.)="emailaddress" or| \\
  		        & \verb|name(.)="annotation" or name(.)="description"]| \\
@@ -51,7 +51,7 @@ is listed in Table~\ref{table:dpsqueries}.
         		& suf = \verb|/parent::incategory/parent::item/@id| \\
   		\hline
  		xm3.dps & pre = \verb|/site/open_auctions/open_auction|,\\
- 		&  suf = \verb|/bidder[last()]| \\ 
+ 		&  suf = \verb|/bidder[last()]| \\
  		\hline
  		xm4.dps & pre = \verb|db:text("{db}", "Creditcard")| \\
  		& suf =  \verb|/parent::*:item[parent::*/parent::*:regions| \\
@@ -59,30 +59,30 @@ is listed in Table~\ref{table:dpsqueries}.
  		& \verb|[(*:location = "United States")][0.0 < *:quantity]| \\
  		& \verb|[*:description][*:name]|\\
  		\hline
- 		xm5a.dps & pre  = \verb|/site/open_auctions|,\\
- 		& suf =  \verb|/open_auction/bidder/increase|\\
- 		xm5b.dps & pre  = \verb|/site/open_auctions/open_auction|,\\
- 		& suf =  \verb|/bidder/increase|\\
-  		xm5c.dps & pre  = \verb|/site/open_auctions/open_auction/bidder|,\\
-        & suf =  \verb|/increase|\\
+		xm5.dps & pre  = \verb|/site/open_auctions/open_auction|,\\
+		& suf =  \verb|/bidder/increase|\\
+		xm5a.dps & pre  = \verb|/site/open_auctions|,\\
+		& suf =  \verb|/open_auction/bidder/increase|\\
+		xm5b.dps & pre  = \verb|/site/open_auctions/open_auction/bidder|,\\
+				& suf =  \verb|/increase|\\
  		\hline
  		xm6.dps & pre  = \verb|/site/regions|,\\
         & suf =  \verb|/self::*[name(.)="africa" or name(.)="asia"]/item|\\
         & \verb| /description/parlist/listitem|\\
- 		\hline\hline   
+ 		\hline\hline
  	\end{tabular}
  \end{table}
- 
 
- 
+
+
 \subsection{XQuery Expressions}
 \label{app:xqueries}
 
-The two XQuery expressions are used for processing prefix query 
+The two XQuery expressions are used for processing prefix query
 and suffix query for data partitioning strategy shown in Table~\ref{tab:xquery1}
 and Table~\ref{tab:xquery2} respectively.
 Note that \verb|{eval_prefix}| will be first replaced by \verb|{prefix}| or
-\verb|db:open('{db}'){prefix}| depending on whether the query is optimized. 
+\verb|db:open('{db}'){prefix}| depending on whether the query is optimized.
 
 \begin{table}
 \centering
@@ -90,8 +90,8 @@ Note that \verb|{eval_prefix}| will be first replaced by \verb|{prefix}| or
 \caption{XQuery Expression for XQ1 prefix part}
   \footnotesize
 \begin{lstlisting}[language=java,frame=single]
-// XQ12: for prefix query 
-let $d := array { {eval_prefix} ! 
+// XQ12: for prefix query
+let $d := array { {eval_prefix} !
           db:node-pre(.) } return
 for $i in 0 to {P} - 1 return
 let $q := array:size($d) idiv {P} return
@@ -105,7 +105,7 @@ array:subarray($d, $part_begin + 1, $part_length)
 } as last into db:open('{tmpdb}')/root
 \end{lstlisting}
 \end{table}
- 
+
 
 \begin{table}
 	\centering
@@ -114,7 +114,7 @@ array:subarray($d, $part_begin + 1, $part_length)
 
   \footnotesize
 \begin{lstlisting}[language=java,frame=single]
-// XQ2: for suffix query 
+// XQ2: for suffix query
 declare option output:method '$mode';
 declare option output:item-separator '[';
 
@@ -125,13 +125,12 @@ return (db:node-pre($node), $node)
 let $part_pre := {p}*2 + 1 return
 for $pre in ft:tokenize(db:open-pre('{tmpdb}', $part_pre)) return
 for $node in db:open-pre('{db}', xs:integer($pre)){suffix})
-return (db:node-pre($node), $node) 
+return (db:node-pre($node), $node)
 \end{lstlisting}
 \end{table}
 
 % xm4c.dps: db:text("{db}", "Creditcard")/parent::*:payment
 % xm4c.dps: /parent::*:item[parent::*/parent::*:regions/parent::*:
 % site/parent::document-node()][(*:location = "United States")]
-% [0.0 < *:quantity][*:description][*:name] 
+% [0.0 < *:quantity][*:description][*:name]
 
- 
