@@ -2,43 +2,43 @@
 
 \section{E2017120501: Data Partitioning on Fragmented XML Data}
 
-This report is about the experiments to evaluate the performance
+This report describes the experiments used to evaluate the performance
 of applying data partitioning strategy on fragmented XML data.
 
 \subsection{A Brief Introduction to Implementation}
 
-The implementation can now process some of the queries on fragmented
-XML documents with data partitioning in a distributed-memory environment.
+The current implementation cannot process all of the target queries 
+(in Table~\ref{tab:dpsqueries}) on fragmented XML documents 
+with data partitioning in a distributed-memory environment.
 There are still problems existed to be solved, which cause some 
-queries unable to be successfully evaluated.
+of the queries unable to be successfully evaluated.
 
 \subsection{Settings}
 
-The settings of this experiments are listed below.
 
 \paragraph{Hardware}
 
 There were 1 master (HaoDesk) and 16 workers (matsu-lab00 -- matsu-lab15)
-used in the experiments listed in Appendix~\ref{app:hardware}.
-The master and workers were in the same local network at speed of 1 Gbps.
- 
-
+used in the experiments listed in Appendix~\ref{app:hardware}. 
+The master and workers were connected with a local network at speed of 1 Gbps.
 
 \paragraph{Software}
+
 The implementation is written in Java (64-Bit Server VM version 1.8.0\_151).
-The input XML data set was xmark600(see \ref{app:xqueries}), which was
+The input XML data set was xmark600 (see Table~\ref{tab:xmark}), which was
 fragmented into 16 fragments with maxisze=4M.
 On each worker, there ran a BaseX server (Verion: 8.6.7).
-For each fragment, a BaseX database instance, namely `xmark600\_16\_4M\'
-was created in main memory on each worker. To understand the memory
-consumption, the database size of \texttt{xmark600\_16\_4M} of each workers
-are listed in Table~\ref{tab:dbinfo}. The input size in the table
-is the size of input XML document, while database size is the size
+For each fragment, a BaseX database instance, namely `xmark600$\_$16$\_4$M' 
+was created in memory on each worker. To understand the memory
+consumption, the sizes of \texttt{xmark600\_16\_4M} of workers
+are listed in Table~\ref{tab:dbinfo}. In the table, \emph{input size} refers 
+to the size of input XML document; \emph{database size} refers to the size
 of the database created in BaseX, including all indexes and related data.
 For the data partition, the number of partions(P) were  1, 2, 3, 4, 8.
 The intermediate database for holding the results of prefix
-query were named  `xmark600\_16\_4M\_tmp'. Since all workers equip with
-8 GB memory, we can create database in main memory mode.
+query were named  `\texttt{xmark600\_16\_4M\_tmp}'. 
+Since all workers equip with
+8 GB memory, we can use set the database in main memory mode.
 
 
 \begin{table}
@@ -80,25 +80,27 @@ are listed in Section~\ref{app:xqueries}.
 
 
 \subsection{Confirming Correctness}
+\label{sec:correctness}
 
-The number of hit nodes, the order of hit nodes and results size of
-the final output of queries have been checked and confirmed to be correct.
+The number of hit nodes (as well as the order) and 
+the result sizes have been 
+checked and confirmed to be correct.
 All the successfully evaluated queries
 have the same number of hit nodes in original order. Some may be
 different in size, such as xm3a.dps. Its original result size
 was 922,270,281, but in this experiment, it is 883,253,777.
-This dramatical difference is caused by line-break. The previous
-experiments were done on Windows, while the current on Linux.
-Since BaseX using `$\backslash$r$\backslash$n' on Windows, while
+This dramatical difference is caused by line-break. The original
+queries were evaluated on Windows, while the current with data partitions 
+on Linux. Since BaseX using `$\backslash$r$\backslash$n' on Windows, while
 `$\backslash$n' on Linux for line-break, there is one byte
 difference for each new line. We also found that the query has
 6,502,751 hit nodes and  there are six lines in every hit node,
-such as:\\
+such as an example result shown in Table~\ref{tab:bidder}.\\
 
 \begin{table}
 	\centering
-	\label{code:bidder}
 	\caption{A hit node of xm3.dps}
+	\label{tab:bidder}
 	\footnotesize
 	\begin{lstlisting}[language=java,frame=single]
 	<bidder>
@@ -128,7 +130,7 @@ There were three period of times recorded, T$_p$, T$_s$ and T$_m$. T$_p$ is the
 time for executing prefix query. It starts from sending  prefix query to all
 workers and ends with the complete of prefix query on all workers.
 T$_s$ is the time for executing suffix query, starting from sending till all
-workers done. T$_m$ is the time for merging results.
+queries on workers done. T$_m$ is the time for merging results.
 For comparison, T$_o$ that represents the execution time of xm1.org -- xm6.org 
 is also listed in the table.
 
@@ -208,8 +210,34 @@ of HaoDesk (32 GB). One proposal is to keep the results on disk.
 
 
 \paragraph{Performance is low.}
-The evaluations for some suffix were very low in performance.
-For example, 
+
+The evaluations for some suffix takes very long time.
+For example, when setting P = 4, the execution of xm3.dps on the second partition
+on matsu-lab11 takes 37 seconds (xm3.org takes 63.3s). Since this evaluation only 
+takes on 1/64 (4 partitions X 16 workers = 64 partitions) of the whole 
+input XML document, it still takes over 1/2 of the original execution time.
+To understand the performance of the original query on a single worker, 
+an extra  experiment was also conducted on matsu-lab11 as shown in Table~\ref{tab:orgon11}.
+From the results, it suggest that the parallel evaluation on a single partition
+takes too long time. 
+
+\begin{table}
+	\label{tab:orgon11}
+	\caption{Execution times of original queries on matsu-lab11}
+\centering
+\begin{tabular}{c|c|c|c}
+	\hline
+	query  &   size    & avg(3-5) & Original \\
+	\hline 
+	xm1.org &   4.0 GiB &  68s     &  3123s   \\
+	xm3.org &  68.8 MiB & 2.3s     &    63s   \\
+	xm4.org &  53.0 MiB & 1.8s     &   101s   \\
+	xm5.org &  74.3 MiB & 2.4s     &    75s   \\
+	xm6.org & 128.0 MiB & 4.2s     &    71s   \\ 
+	\hline
+\end{tabular}
+
+\end{table}
 
 
 

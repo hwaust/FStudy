@@ -1,0 +1,51 @@
+
+
+
+
+
+
+D:\data>java -cp bxstudy.jar -server basex.XDBinfo
+172.21.52.50: 3897 MB,4293 MB, query=xquery for $node in db:info('xmark600_16_4M
+') return $node//size/text()  || ',' ||   $node//inputsize/text()
+172.21.52.51: 3613 MB,3807 MB, query=xquery for $node in db:info('xmark600_16_4M
+') return $node//size/text()  || ',' ||   $node//inputsize/text()
+172.21.52.52: 3662 MB,3788 MB, query=xquery for $node in db:info('xmark600_16_4M
+') return $node//size/text()  || ',' ||   $node//inputsize/text()
+172.21.52.53: 4001 MB,4434 MB, query=xquery for $node in db:info('xmark600_16_4M
+') return $node//size/text()  || ',' ||   $node//inputsize/text()
+172.21.52.54: 3750 MB,4112 MB, query=xquery for $node in db:info('xmark600_16_4M
+') return $node//size/text()  || ',' ||   $node//inputsize/text()
+172.21.52.55: 3907 MB,4255 MB, query=xquery for $node in db:info('xmark600_16_4M
+') return $node//size/text()  || ',' ||   $node//inputsize/text()
+172.21.52.56: 4369 MB,5021 MB, query=xquery for $node in db:info('xmark600_16_4M
+') return $node//size/text()  || ',' ||   $node//inputsize/text()
+172.21.52.57: 4524 MB,5226 MB, query=xquery for $node in db:info('xmark600_16_4M
+') return $node//size/text()  || ',' ||   $node//inputsize/text()
+172.21.52.58: 3605 MB,3876 MB, query=xquery for $node in db:info('xmark600_16_4M
+') return $node//size/text()  || ',' ||   $node//inputsize/text()
+172.21.52.59: 4159 MB,4611 MB, query=xquery for $node in db:info('xmark600_16_4M
+') return $node//size/text()  || ',' ||   $node//inputsize/text()
+172.21.52.60: 3571 MB,3720 MB, query=xquery for $node in db:info('xmark600_16_4M
+') return $node//size/text()  || ',' ||   $node//inputsize/text()
+172.21.52.61: 4005 MB,4434 MB, query=xquery for $node in db:info('xmark600_16_4M
+') return $node//size/text()  || ',' ||   $node//inputsize/text()
+172.21.52.62: 4333 MB,4995 MB, query=xquery for $node in db:info('xmark600_16_4M
+') return $node//size/text()  || ',' ||   $node//inputsize/text()
+172.21.52.63: 4309 MB,4864 MB, query=xquery for $node in db:info('xmark600_16_4M
+') return $node//size/text()  || ',' ||   $node//inputsize/text()
+172.21.52.64: 4219 MB,4743 MB, query=xquery for $node in db:info('xmark600_16_4M
+') return $node//size/text()  || ',' ||   $node//inputsize/text()
+172.21.52.65: 4621 MB,5363 MB, query=xquery for $node in db:info('xmark600_16_4M
+') return $node//size/text()  || ',' ||   $node//inputsize/text()
+
+D:\data>
+
+Linux version 4.9.0-3-amd64 (debian-kernel@lists.debian.org) (gcc version 6.3.0
+20170516 (Debian 6.3.0-18) ) #1 SMP Debian 4.9.30-2+deb9u5 (2017-09-19)
+
+
+Linux version 4.9.0-3-amd64
+
+
+
+
