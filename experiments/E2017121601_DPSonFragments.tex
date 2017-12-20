@@ -136,16 +136,14 @@ is also listed in the table.
 
 \paragraph{xm1.dps}
 
-Since the result of xm1.dps is larger than the memory of HaoDesk, this query was
-not evaluated. This is a design  choice about how to process the results. Based
-the previous evaluation, one possible way is to stored the unordered
-intermediate results in files and then concatenate these files.
+Since the result of xm1.dps is larger than the memory of HaoDesk, this query 
+was not evaluated. This is a design choice about how to process the results. 
+One proposal is to stored the intermediate results in files and then 
+concatenate these files to form the final result.
 
 \paragraph{xm2.dps}
 
-This query was not tested for two reasons. Firstly, the prefix query of xm2.dps
-(as well as xm4.dps) cannot be processed by the current XQuery expression XQ1
-(will be modifed and tested soon). Secondly, there query has no hit node over
+This query was not tested because this query has no hit node in
 XMark600 as explained in experiment E20170401. To keep using this query, one
 proposal is to make a minimal change to the attribute part of the query, such as
 changing \texttt{category52} to \texttt{category324329}, which exists in
@@ -161,7 +159,7 @@ with more partitions.
 
 \paragraph{xm4.dps}
 
-Not tested for the same reason as the first one of xm2.dps.
+Failed to pass the execution (explained in Section~\ref{sec:problems}).
 
 \paragraph{xm5.dps}
 
@@ -176,8 +174,10 @@ query to be allocated to 16 computers\footnote{
 	In a suffix query when P = 2, it is then to process ``pre value 5'' in XQ2,
 	which refers to the second \texttt{part} node. However, since there is
 	no second \texttt{part} node, the error occurred.
-}, I changed it to xm5.dps (xm5b.dps was also evaluated, but
+}, it was changed it to xm5.dps (xm5b.dps was also evaluated, but
 it took 1480s (P=4), which is too long and thus ignored).
+The execution time when P=1 takes about 4 times longer then P=2. The 
+execution from P=2 to P=4 are basically linear. 
 
 
 \paragraph{xm6.dps}
@@ -190,15 +190,15 @@ the same as xm5a.dps (both \texttt{/site/regions} and
 
 
 \subsection{Problems}
-
+\label{sec:problems}
 In general there are several problems (or design choices) listed below:
 
 \paragraph{Evaluation cannot be done.}
 
-This is the primary problem that hinder the implementation to process
+This is the primary problem that hinders the implementation to process
 all queries successfully.
 The current implementation for some reason cannot successfully finish
-the evaluation very often. It went dead many times in the middle of
+the evaluation. It went dead many times in the middle of
 evaluating suffix queries. For example, letting P=4, there are 64 suffix
 queries processed in parallel. The evaluation stays irresponsible after
 50 or more suffix queries have been evaluated. The reason has not been
@@ -219,7 +219,7 @@ input XML document, it still takes over 1/2 of the original execution time.
 To understand the performance of the original query on a single worker, 
 an extra  experiment was also conducted on matsu-lab11 as shown in Table~\ref{tab:orgon11}.
 From the results, it suggest that the parallel evaluation on a single partition
-takes too long time. 
+takes too long time than the original queries. 
 
 \begin{table}
 	\label{tab:orgon11}
