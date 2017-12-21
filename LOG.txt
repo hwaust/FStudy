@@ -6,8 +6,9 @@
 - Improvement of Efficiency of parsing.
 java -Xmx4g -Xms2g -cp bxstudy.jar tests.IntPreEfficiencyTest
 
+ 
+72ejt9
 
-s8y76j
 
 2017-12-17
 * check the slowest one.
@@ -88,15 +89,3 @@ xmark600_16_4M on matsu-lab05
 | xm6.org | 128.0 MiB | 4.2s     |    71s   |
 ---------------------------------------------
 
-Dear Matsuzaki-sensei,
-
-I am sorry for a too late reply. This was due to the folowing two
-reasons:
-- I got stuck in the implementation that cannot successfully
-  evaluate some queries (described in the attached report).
-- My wife was ill and had a small surgical operation.
-  It took me some time in the hospital.
-
-
-Sincerely,
-Wei.
