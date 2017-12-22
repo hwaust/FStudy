@@ -6,7 +6,7 @@
 - Improvement of Efficiency of parsing.
 java -Xmx4g -Xms2g -cp bxstudy.jar tests.IntPreEfficiencyTest
 
- 
+
 72ejt9
 
 
@@ -15,6 +15,34 @@ java -Xmx4g -Xms2g -cp bxstudy.jar tests.IntPreEfficiencyTest
 2017-12-18
 - Done
 - also checked the log files.
+
+2017-12-22
+MATSU-LAB99:home2/hao/basex/fragmentation/experiments/logs_20171222
+
+
+Dear Matsuzaki-sensei and Sato-san,
+
+This week, I basically did:
+- Implementation of applying data partitioning on fragmented XML data.
+- An experiment on XMark600 over 16 computers.
+- A report for the above
+- Got stuck for several days.
+
+Based on the current progress, there still a lot of problems that I
+have no idea about how to solve them in just two weeks. Therefore,
+it is higly possible for me to take my second extension of Ph.D.
+Although this is absolute not what both Matsuzaki-sensei and I
+once expected, but it seems to be the only way to finish all of
+my work. Based on the current reasarch status, it also suggests
+that I am not ready for a Ph.D. Therefore, I am willing to take
+the second extension.
+
+
+Sincerely,
+Wei.
+
+
+
 
 -> Login to: Matsu05
 -> Open a singlton BaseX instance: java -cp BaseX867.jar org.basex.BaseX

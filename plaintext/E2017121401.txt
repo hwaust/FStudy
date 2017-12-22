@@ -27,7 +27,7 @@ xm3d.dps           9.4
 .\copyXMLData.bat 16 xmark600_16_4M_20171126
 
 
-java -Xmx16g -Xms4g -cp bxstudy.jar fragmentation.exe.QueryEvaluatorDPS -iplist range:172.21.52.50:16 -dblist xmark600_16_4M:16 -key xm3a.dps -f g:\data\fragments\xmark600_16_4M_20171126 -p 4
+java -Xmx16g -Xms4g -cp bxstudy.jar fragmentation.exe.QueryEvaluatorDPS -iplist range:172.21.52.50:16 -dblist xmark600_16_4M:16 -f g:\data\fragments\xmark600_16_4M_20171126 -p 4 -key xm3a.dps
 
 args = new String[] { "-iplist", "#4", "-dblist", "range:mfrag:0-3", "-key", "xm3a.dps", "-f",
       "D:\\data\\fragments\\xmark1_4_20K_20171126", "-p", "4" };
