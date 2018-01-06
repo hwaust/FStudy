@@ -1,11 +1,12 @@
-The schedule consists of three parts:
+For the further study, I make the a schedule for the following six 
+months. The schedule consists of three parts:
     1) Study on fragments 
     2) Thesis writing 
     3) Preparation for the final dense.
 
 1) Study on fragmentation 
 - Week 01 - 03 (12/30 - 01/19) 
-  Study related knowledge of experiments
+  Study related knowledge for the experiments
   Investigate and solve the efficiency problem 
   
 - Week 04 - 05 (01/20 - 02/02)
@@ -25,7 +26,7 @@ The schedule consists of three parts:
 - Week 13 - 14: 03/24 - 03/30
   Collect and analyze results for the paper.
 
-- Week 14 - 18 (03/31 - 05/04)
+- Week 15 - 18 (03/31 - 05/04)
   Paper writing.
 
 2) Thesis Writing
@@ -43,7 +44,7 @@ The schedule consists of three parts:
 - Week 22 - 22 (05/26 - 06/01)
   Improve the quality of Part I: Study on BaseX.
   
-- Week 23 - 23 (06/02 - 06/17)
+- Week 23 - 23 (06/02 - 06/07)
   Improve the quality of Part II: Study on Partial tree
 
 - Week 24 - 24 (06/08 - 06/15)
@@ -58,36 +59,3 @@ The schedule consists of three parts:
 
 3) Preparation for the final defense
   07/07 - 08/20 Preparation of slides and presentation.
-
-   
- 
-
-
-
-Week  1: 12/30 - 01/05 
-Week  2: 01/06 - 01/12
-Week  3: 01/13 - 01/19
-Week  4: 01/20 - 01/26
-Week  5: 01/27 - 02/02
-Week  6: 02/03 - 02/09
-Week  7: 02/10 - 02/16
-Week  8: 02/17 - 02/23
-Week  9: 02/24 - 03/02
-Week 10: 03/03 - 03/09
-Week 11: 03/10 - 03/16
-Week 12: 03/17 - 03/23
-Week 13: 03/24 - 03/30
-Week 14: 03/31 - 04/06
-Week 15: 04/07 - 04/13
-Week 16: 04/14 - 04/20
-Week 17: 04/21 - 04/27
-Week 18: 04/28 - 05/04
-Week 19: 05/05 - 05/11
-Week 20: 05/12 - 05/18
-Week 21: 05/19 - 05/25
-Week 22: 05/26 - 06/01
-Week 23: 06/02 - 06/08
-Week 24: 06/09 - 06/15
-Week 25: 06/16 - 06/22
-Week 26: 06/23 - 06/29
-Week 27: 06/30 - 07/06
